@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiAventura 4° | Sistema Educativo Interactivo</title>
+    <!-- Fuentes Google: Outfit y Nunito -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Estilos Oficiales (Blanco, Azul Oscuro y Crema) -->
+    <link rel="stylesheet" href="CSS/estilos.css">
+</head>
+<body>
+
+    <!-- ======================================================================
+         BARRA SUPERIOR DE NAVEGACIÓN Y PERFIL DEL ESTUDIANTE
+         ====================================================================== -->
+    <header class="barra-superior" role="banner">
+        <div class="barra-contenedor">
+            <!-- Logotipo y Nombre -->
+            <div class="marca-logo" id="logoHeader" title="Ir al Menú Principal">
+                <div class="logo-icono">
+                    <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+                        <rect x="8" y="14" width="48" height="40" rx="8" fill="#0B1B3D"/>
+                        <path d="M12 48C20 45 28 45 32 49C36 45 44 45 52 48V20C44 17 36 17 32 21C28 17 20 17 12 20V48Z" fill="#FFFDF7"/>
+                        <path d="M32 21V49" stroke="#0B1B3D" stroke-width="2.5" stroke-linecap="round"/>
+                        <path d="M22 27L28 33M28 27L22 33" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+                        <circle cx="32" cy="11" r="5" fill="#D4AF37"/>
+                    </svg>
+                </div>
+                <div>
+                    <div class="marca-titulo">MultiAventura 4°</div>
+                    <div class="marca-subtitulo">Tablas & SIMCE</div>
+                </div>
+            </div>
+
+            <!-- Perfil del Estudiante Activo -->
+            <div class="perfil-estudiante-header">
+                <div class="chip-avatar">
+                    <div class="avatar-mini" id="headerAvatarMini">
+                        <!-- SVG inyectado por app.js -->
+                    </div>
+                    <div class="datos-estudiante-mini">
+                        <span class="nombre-estudiante-mini" id="headerNombreEstudiante">Estudiante</span>
+                        <span class="nivel-estudiante-mini" id="headerNivelEstudiante">Nivel 1: Aprendiz</span>
+                    </div>
+                </div>
+
+                <!-- Chips de Puntos y Estrellas -->
+                <div class="stats-header">
+                    <div class="chip-stat puntos" title="Puntos acumulados">
+                        <span>⭐</span>
+                        <span id="headerPuntosEstudiante">0 pts</span>
+                    </div>
+                    <div class="chip-stat" title="Estrellas ganadas">
+                        <span id="headerEstrellasEstudiante">⭐ 0</span>
+                    </div>
+                </div>
+
+                <!-- Botones de Acción (Sonido y Salir) -->
+                <div class="acciones-header">
+                    <button type="button" id="btnAlternarSonido" class="btn-header-icono" aria-label="Control de Sonido">
+                        🔊
+                    </button>
+                    <button type="button" id="btnCambiarEstudiante" class="btn-cambiar-estudiante" title="Cambiar o Salir de Estudiante">
+                        <span>👤 Cambiar</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- ======================================================================
+         CONTENEDOR PRINCIPAL DE VISTAS (SPA)
+         ====================================================================== -->
+    <main class="contenedor-app" role="main">
+
+        <!-- ==================================================================
+             VISTA 1: MENÚ PRINCIPAL (ETAPA 2)
+             ================================================================== -->
+        <section id="vista-menu" class="vista-modulo activa">
+            <!-- Banner de Bienvenida y Progreso Global -->
+            <div class="banner-bienvenida">
+                <div>
+                    <h2 class="saludo-titulo">¡Hola, <span id="saludoNombreDashboard" style="color: var(--color-azul-brillante);">Aventurero</span>! 👋</h2>
+                    <p class="saludo-subtitulo">
+                        Bienvenido a tu plataforma interactiva de matemáticas. Explora las tablas del 2 al 10 y prepárate para tu Ensayo SIMCE.
+                    </p>
+                </div>
+
+                <div class="progreso-global-widget">
+                    <div class="progreso-global-info">
+                        <span>Dominio de Tablas</span>
+                        <span id="textoPorcentajeGlobal" style="color: var(--color-dorado-acento);">0% Dominado</span>
+                    </div>
+                    <div class="barra-progreso-fondo">
+                        <div id="barraProgresoGlobal" class="barra-progreso-relleno"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Grilla de Tarjetas del Menú Principal -->
+            <div class="grilla-menu-principal">
+                <!-- 1. Aprender Tablas -->
+                <article class="tarjeta-menu" id="tarjetaMenuAprender" tabindex="0">
+                    <div>
+                        <div class="icono-tarjeta-menu">📘</div>
+                        <span class="tag-tarjeta">Fundamentos Visuales</span>
+                        <h3 class="titulo-menu">Aprender Tablas</h3>
+                        <p class="descripcion-menu">
+                            Explora las tablas del 2 al 10 con grupos animados, arreglos rectangulares, suma iterada y trucos secretos.
+                        </p>
+                    </div>
+                    <div class="pie-tarjeta-menu">
+                        <span>Ingresar al taller</span>
+                        <span class="flecha-accion">→</span>
+                    </div>
+                </article>
+
+                <!-- 2. Juegos y Desafíos -->
+                <article class="tarjeta-menu" id="tarjetaMenuJuegos" tabindex="0">
+                    <div>
+                        <div class="icono-tarjeta-menu">🎮</div>
+                        <span class="tag-tarjeta" style="background:#E8F8F0; color:#27AE60;">7 Modos Dinámicos</span>
+                        <h3 class="titulo-menu">Juegos y Desafíos</h3>
+                        <p class="descripcion-menu">
+                            Diviértete con Memoria, Atrapa el resultado, Construye con bloques, Desafío contra el reloj y Detective matemático.
+                        </p>
+                    </div>
+                    <div class="pie-tarjeta-menu">
+                        <span>Jugar y ganar puntos</span>
+                        <span class="flecha-accion">→</span>
+                    </div>
+                </article>
+
+                <!-- 3. Progreso y Puntaje -->
+                <article class="tarjeta-menu" id="tarjetaMenuProgreso" tabindex="0">
+                    <div>
+                        <div class="icono-tarjeta-menu">📊</div>
+                        <span class="tag-tarjeta">Estadísticas</span>
+                        <h3 class="titulo-menu">Mi Progreso y Puntaje</h3>
+                        <p class="descripcion-menu">
+                            Revisa el porcentaje de avance por cada tabla, tus mejores marcas en las actividades y nivel de precisión.
+                        </p>
+                    </div>
+                    <div class="pie-tarjeta-menu">
+                        <span>Ver mis métricas</span>
+                        <span class="flecha-accion">→</span>
+                    </div>
+                </article>
+
+                <!-- 4. Logros y Recompensas -->
+                <article class="tarjeta-menu" id="tarjetaMenuLogros" tabindex="0">
+                    <div>
+                        <div class="icono-tarjeta-menu">🏆</div>
+                        <span class="tag-tarjeta" style="background:#FFF9E6; color:#B78A00;">Insignias Virtuales</span>
+                        <h3 class="titulo-menu">Logros y Recompensas</h3>
+                        <p class="descripcion-menu">
+                            Colecciona medallas y trofeos a medida que superas desafíos y dominas nuevas tablas de multiplicar.
+                        </p>
+                    </div>
+                    <div class="pie-tarjeta-menu">
+                        <span>Ver colección</span>
+                        <span class="flecha-accion">→</span>
+                    </div>
+                </article>
+
+                <!-- 5. Ensayo Matemático tipo SIMCE (Destacada) -->
+                <article class="tarjeta-menu destacada" id="tarjetaMenuSimce" tabindex="0">
+                    <div>
+                        <div class="icono-tarjeta-menu" style="color: var(--color-azul-oscuro);">📑</div>
+                        <span class="tag-tarjeta" id="badgeEstadoSimce">Evaluación Formativa</span>
+                        <h3 class="titulo-menu">Ensayo Matemático SIMCE</h3>
+                        <p class="descripcion-menu">
+                            10 situaciones matemáticas contextualizadas para 4° básico: compras, grupos en el patio, kermesse, libros y más.
+                        </p>
+                    </div>
+                    <div class="pie-tarjeta-menu">
+                        <span>Iniciar Ensayo Oficial</span>
+                        <span class="flecha-accion">→</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             VISTA 2: APRENDER TABLAS (ETAPA 3)
+             ================================================================== -->
+        <section id="vista-tablas" class="vista-modulo">
+            <div class="encabezado-seccion">
+                <div>
+                    <h2 class="titulo-seccion-actual">📘 Taller Interactivo de Tablas de Multiplicar</h2>
+                    <p class="subtitulo-seccion-actual">Comprende la multiplicación como grupos repetidos y descubre sus propiedades.</p>
+                </div>
+                <button type="button" class="btn-volver btn-volver-menu">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
+
+            <!-- Carrusel de selección de tablas (2 al 10) -->
+            <div class="selector-tablas-carrusel" id="carruselTablas" role="tablist">
+                <!-- Inyectado por tablas.js -->
+            </div>
+
+            <!-- Taller Didáctico de la Tabla Seleccionada -->
+            <div class="panel-aprendizaje-tabla">
+                <!-- Columna Izquierda: Ecuación y Grupos Concretos -->
+                <div class="tarjeta-didactica">
+                    <h3><span>🔍</span> Modelo Concreto de la Tabla del <span id="lblNumeroTabla">2</span></h3>
+                    
+                    <div class="control-operacion">
+                        <div class="ecuacion-gigante">
+                            <span class="numero-resaltado" id="factorTablaA">2</span>
+                            <span>×</span>
+                            <span class="numero-resaltado" id="factorTablaB">3</span>
+                            <span>=</span>
+                            <span class="resultado-resaltado" id="resultadoMultiplicacion">6</span>
+                        </div>
+                        <div class="slider-contenedor">
+                            <label for="sliderFactor" style="font-size:0.9rem; font-weight:700; color:var(--color-texto-secundario);">
+                                Mueve la barra para cambiar el segundo factor (1 al 10):
+                            </label>
+                            <input type="range" min="1" max="10" value="3" id="sliderFactor" class="slider-rango">
+                        </div>
+                    </div>
+
+                    <!-- Visualización de Grupos de Objetos -->
+                    <div style="font-weight: 800; font-size: 0.95rem; color: var(--color-azul-oscuro); margin-bottom: 8px;">
+                        Grupos repetidos:
+                    </div>
+                    <div class="area-visual-grupos" id="areaGruposObjetos">
+                        <!-- Inyectado por tablas.js -->
+                    </div>
+
+                    <!-- Suma Iterada y Conmutatividad -->
+                    <div class="tarjeta-explicacion-modelo">
+                        <div class="texto-suma-iterada" id="textoExplicacionSuma">Suma repetida: 3 + 3 = 6</div>
+                        <div class="texto-conmutativa" id="textoConmutativa">💡 Propiedad Conmutativa: 2 × 3 = 3 × 2 = 6</div>
+                    </div>
+                </div>
+
+                <!-- Columna Derecha: Matriz Rectangular y Truco Secreto -->
+                <div class="tarjeta-didactica">
+                    <h3><span>✨</span> Arreglo Rectangular y Patrón Secreto</h3>
+
+                    <!-- Matriz Cuadrícula -->
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <div style="font-weight: 800; font-size: 0.95rem; color: var(--color-azul-oscuro); margin-bottom: 6px;">
+                            Matriz de Filas × Columnas:
+                        </div>
+                        <div class="area-matriz-cuadricula" id="areaMatrizCuadricula">
+                            <!-- Inyectado por tablas.js -->
+                        </div>
+                    </div>
+
+                    <!-- Caja del Patrón / Truco -->
+                    <div class="caja-patron-secreto">
+                        <div class="titulo-patron">
+                            <span id="iconoPatron">💡</span>
+                            <span id="tituloPatron">Patrón de la Tabla</span>
+                        </div>
+                        <p class="descripcion-patron" id="descPatron">
+                            Cargando explicación del patrón...
+                        </p>
+                    </div>
+
+                    <!-- Taller de Práctica Guiada Rápida -->
+                    <div class="taller-practica-rapida" id="tallerPreguntaContenedor">
+                        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                            <strong style="color:var(--color-azul-oscuro); font-size:1.1rem;">🎯 Práctica Rápida</strong>
+                            <span id="lblContadorPreguntaTaller" style="font-size:0.88rem; font-weight:800; color:var(--color-texto-secundario);">Pregunta 1 de 5</span>
+                        </div>
+                        <div class="pregunta-taller-texto" id="textoPreguntaTaller">
+                            2 × 3 = ?
+                        </div>
+                        <div class="opciones-taller-grid" id="opcionesTallerGrid">
+                            <!-- Inyectado por tablas.js -->
+                        </div>
+                        <div id="retroTaller" class="retroalimentacion-inmediata"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             VISTA 3: JUEGOS Y DESAFÍOS (ETAPA 3 - 7 MODOS)
+             ================================================================== -->
+        <section id="vista-juegos" class="vista-modulo">
+            <div class="encabezado-seccion">
+                <div>
+                    <h2 class="titulo-seccion-actual">🎮 Juegos y Desafíos Matemáticos</h2>
+                    <p class="subtitulo-seccion-actual">7 actividades dinámicas para practicar y aprender sin monotonía.</p>
+                </div>
+                <button type="button" class="btn-volver btn-volver-menu">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
+
+            <!-- Submenú de Selección de Juego -->
+            <div class="submenu-juegos">
+                <div class="tarjeta-juego-item activo" data-juego="memoria">
+                    <div>
+                        <div class="icono-juego-wrapper">🧠</div>
+                        <h4 class="titulo-juego">Memoria Matemática</h4>
+                        <p class="desc-juego">Encuentra las parejas de cartas que relacionan la operación con su resultado.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Concentración</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="atrapa">
+                    <div>
+                        <div class="icono-juego-wrapper">⚡</div>
+                        <h4 class="titulo-juego">Atrapa el Resultado</h4>
+                        <p class="desc-juego">Burbujas numéricas en movimiento. ¡Toca la correcta a toda velocidad!</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Reflejos Rápidos</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="construye">
+                    <div>
+                        <div class="icono-juego-wrapper">🧱</div>
+                        <h4 class="titulo-juego">Construye la Multiplicación</h4>
+                        <p class="desc-juego">Agrupa objetos y canastas concretas para modelar la operación requerida.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Manipulativo</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="quien_tiene">
+                    <div>
+                        <div class="icono-juego-wrapper">👥</div>
+                        <h4 class="titulo-juego">¿Quién tiene la respuesta?</h4>
+                        <p class="desc-juego">Tres personajes muestran pizarras numéricas. Elige al personaje acertado.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Discriminación</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="tiempo">
+                    <div>
+                        <div class="icono-juego-wrapper">⏱️</div>
+                        <h4 class="titulo-juego">Desafío Contra el Tiempo</h4>
+                        <p class="desc-juego">60 segundos de adrenalina para responder el mayor número de tablas posible.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Velocidad</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="arrastra">
+                    <div>
+                        <div class="icono-juego-wrapper">🧩</div>
+                        <h4 class="titulo-juego">Arrastra y Completa</h4>
+                        <p class="desc-juego">Coloca la ficha numérica faltante para completar la igualdad matemática.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Encaje Lógico</span>
+                </div>
+
+                <div class="tarjeta-juego-item" data-juego="detective">
+                    <div>
+                        <div class="icono-juego-wrapper">🔍</div>
+                        <h4 class="titulo-juego">Detective Matemático</h4>
+                        <p class="desc-juego">Sigue las pistas deductivas paso a paso para descubrir el número secreto.</p>
+                    </div>
+                    <span style="font-weight: 800; font-size: 0.82rem; color: var(--color-dorado-acento);">Razonamiento</span>
+                </div>
+            </div>
+
+            <!-- Arena de Juego Activo -->
+            <div class="arena-juego-activo" id="arenaJuegoContenedor">
+                <!-- Inyectado por juegos.js -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             VISTA 4: MI PROGRESO Y PUNTAJE (ETAPA 2 y 7)
+             ================================================================== -->
+        <section id="vista-progreso" class="vista-modulo">
+            <div class="encabezado-seccion">
+                <div>
+                    <h2 class="titulo-seccion-actual">📊 Mi Progreso y Desempeño</h2>
+                    <p class="subtitulo-seccion-actual">Conoce tus avances por tabla y el registro de tus evaluaciones.</p>
+                </div>
+                <button type="button" class="btn-volver btn-volver-menu">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
+
+            <div id="contenedorDetalleProgreso">
+                <!-- Inyectado por app.js -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             VISTA 5: LOGROS Y RECOMPENSAS (ETAPA 2 y 7)
+             ================================================================== -->
+        <section id="vista-logros" class="vista-modulo">
+            <div class="encabezado-seccion">
+                <div>
+                    <h2 class="titulo-seccion-actual">🏆 Logros y Trofeos Virtuales</h2>
+                    <p class="subtitulo-seccion-actual">Completa desafíos para coleccionar todas las insignias matemáticas.</p>
+                </div>
+                <button type="button" class="btn-volver btn-volver-menu">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
+
+            <div id="contenedorListaLogros">
+                <!-- Inyectado por app.js -->
+            </div>
+        </section>
+
+        <!-- ==================================================================
+             VISTA 6: ENSAYO MATEMÁTICO TIPO SIMCE (ETAPA 4)
+             ================================================================== -->
+        <section id="vista-simce" class="vista-modulo">
+            <div class="encabezado-seccion">
+                <div>
+                    <h2 class="titulo-seccion-actual">📑 Ensayo Matemático Oficial tipo SIMCE (4° Básico)</h2>
+                    <p class="subtitulo-seccion-actual">Situaciones de la vida real: compras, grupos escolares, biblioteca y huerto.</p>
+                </div>
+                <button type="button" class="btn-volver btn-volver-menu">
+                    ← Volver al Menú Principal
+                </button>
+            </div>
+
+            <div id="contenedorModuloSimce">
+                <!-- Estructura del Ensayo: Lateral + Principal -->
+                <div class="contenedor-ensayo-simce">
+                    <!-- Panel Lateral (Preguntas 1 al 10) -->
+                    <aside class="panel-lateral-simce" aria-label="Navegación de Preguntas SIMCE">
+                        <div class="titulo-panel-lateral">
+                            <span>📌</span>
+                            <span>Preguntas del Ensayo</span>
+                        </div>
+                        <div class="resumen-respuestas-texto" id="textoResumenRespuestasSimce">
+                            Respondidas: 0 de 10
+                        </div>
+
+                        <!-- Grilla de Botones 1 al 10 -->
+                        <div class="grilla-navegador-preguntas" id="grillaNavegadorSimce">
+                            <!-- Inyectado por simce.js -->
+                        </div>
+
+                        <button type="button" id="btnFinalizarEnsayoSimce" class="btn-finalizar-simce">
+                            Finalizar y Evaluar ✓
+                        </button>
+                    </aside>
+
+                    <!-- Área Principal de la Pregunta Activa -->
+                    <section class="area-principal-pregunta">
+                        <div class="etiqueta-contexto-pregunta">
+                            <span id="iconoContextoSimce">🛒</span>
+                            <span id="etiquetaContextoSimce">Compras y Precios</span>
+                        </div>
+
+                        <h3 class="enunciado-pregunta" id="enunciadoPreguntaSimce">
+                            Cargando pregunta...
+                        </h3>
+
+                        <!-- Alternativas A, B, C, D -->
+                        <div class="grilla-alternativas-simce" id="grillaAlternativasSimce">
+                            <!-- Inyectado por simce.js -->
+                        </div>
+
+                        <!-- Botones de Navegación Anterior / Siguiente -->
+                        <div class="fila-controles-ensayo">
+                            <button type="button" id="btnSimceAnterior" class="btn-control-ensayo">
+                                ← Pregunta Anterior
+                            </button>
+                            <button type="button" id="btnSimceSiguiente" class="btn-control-ensayo">
+                                Pregunta Siguiente →
+                            </button>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Modal Genérico para Diálogos y Confirmaciones -->
+    <div id="modalGenerico" class="modal-overlay" role="dialog" aria-modal="true">
+        <div class="modal-caja" id="cuerpoModalGenerico">
+            <!-- Contenido dinámico -->
+        </div>
+    </div>
+
+    <!-- Pie Institucional -->
+    <footer class="pie-sistema">
+        Departamento de Informática • <strong>MultiAventura 4°</strong> • Paleta Oficial: Blanco, Azul Oscuro y Crema
+    </footer>
+
+    <!-- Scripts de la Plataforma en orden de dependencia -->
+    <script src="JS/audio.js"></script>
+    <script src="JS/storage.js"></script>
+    <script src="JS/tablas.js"></script>
+    <script src="JS/juegos.js"></script>
+    <script src="JS/simce.js"></script>
+    <script src="JS/app.js"></script>
+
+</body>
+</html>

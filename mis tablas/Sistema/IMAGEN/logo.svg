@@ -1,0 +1,15 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fondo y bordes en Azul Oscuro, Crema y Dorado -->
+    <rect width="200" height="200" rx="40" fill="#0B1B3D"/>
+    <circle cx="100" cy="100" r="85" fill="#FFFDF7" stroke="#D4AF37" stroke-width="6"/>
+    <!-- Libro Abierto -->
+    <path d="M40 145C65 135 90 135 100 148C110 135 135 135 160 145V65C135 55 110 55 100 68C90 55 65 55 40 65V145Z" fill="#FFFDF7" stroke="#0B1B3D" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M100 68V148" stroke="#0B1B3D" stroke-width="5" stroke-linecap="round"/>
+    <!-- Signo de Multiplicación X en Dorado -->
+    <path d="M68 85L88 105M88 85L68 105" stroke="#D4AF37" stroke-width="7" stroke-linecap="round"/>
+    <!-- Signo de Igual = en Azul Brillante -->
+    <line x1="115" y1="90" x2="135" y2="90" stroke="#1E4E8C" stroke-width="6" stroke-linecap="round"/>
+    <line x1="115" y1="102" x2="135" y2="102" stroke="#1E4E8C" stroke-width="6" stroke-linecap="round"/>
+    <!-- Estrella Superior de Éxito -->
+    <polygon points="100,28 106,42 122,44 110,54 114,70 100,61 86,70 90,54 78,44 94,42" fill="#D4AF37" stroke="#0B1B3D" stroke-width="3"/>
+</svg>

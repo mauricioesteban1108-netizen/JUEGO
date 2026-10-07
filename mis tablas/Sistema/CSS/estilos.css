@@ -1,0 +1,1771 @@
+/* ==========================================================================
+   MultiAventura 4° - Estilos Oficiales
+   Paleta: Blanco (#FFFFFF), Azul Oscuro (#0B1B3D, #132D63), Crema (#FFFDF7, #F8F1DF, #EADCB9)
+   Tipografía: Outfit & Nunito
+   ========================================================================== */
+
+:root {
+    /* Paleta Principal Requerida */
+    --color-blanco: #FFFFFF;
+    --color-azul-oscuro: #182f61;
+    --color-azul-medio: #1848ad;
+    --color-azul-brillante: #3783e6;
+    --color-azul-suave: #EBF1FA;
+    --color-azul-hover: #265EAA;
+
+    --color-crema: #FFFDF7;
+    --color-crema-medio: #F8F1DF;
+    --color-crema-oscuro: #EADCB9;
+    --color-crema-dorado: #D8BD80;
+    --color-dorado-acento: #D4AF37;
+    --color-dorado-brillante: #F1C40F;
+
+    /* Acentos y Retroalimentación */
+    --color-verde-exito: #27AE60;
+    --color-verde-suave: #E8F8F0;
+    --color-rojo-alerta: #E74C3C;
+    --color-rojo-suave: #FDEDEC;
+    --color-naranja-aviso: #E67E22;
+    --color-morado-desafio: #8E44AD;
+
+    /* Textos y Sombras */
+    --color-texto-oscuro: #0B1B3D;
+    --color-texto-secundario: #4A5B78;
+    --color-texto-blanco: #FFFFFF;
+    --color-texto-crema: #FDF9EE;
+
+    --sombra-suave: 0 4px 14px rgba(11, 27, 61, 0.08);
+    --sombra-media: 0 8px 24px rgba(11, 27, 61, 0.12);
+    --sombra-fuerte: 0 16px 36px rgba(11, 27, 61, 0.18);
+    --sombra-dorada: 0 6px 20px rgba(212, 175, 55, 0.35);
+
+    --radio-tarjeta: 20px;
+    --radio-boton: 14px;
+    --transicion-rapida: 0.2s ease;
+    --transicion-normal: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reset y Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Nunito', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background-color: var(--color-crema);
+    background-image: 
+        radial-gradient(circle at 10% 15%, rgba(19, 45, 99, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(234, 220, 185, 0.45) 0%, transparent 50%),
+        linear-gradient(180deg, #FFFDF7 0%, #FAF3E3 100%);
+    color: var(--color-texto-oscuro);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Fuentes y Títulos */
+h1, h2, h3, h4, .fuente-titulo {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.3px;
+}
+
+/* ==========================================================================
+   Barra Superior de Navegación y Perfil
+   ========================================================================== */
+.barra-superior {
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    color: var(--color-blanco);
+    border-bottom: 4px solid var(--color-crema-oscuro);
+    box-shadow: var(--sombra-media);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.barra-contenedor {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.marca-logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+}
+
+.marca-logo .logo-icono {
+    width: 44px;
+    height: 44px;
+    background: var(--color-crema);
+    border-radius: 12px;
+    border: 2.5px solid var(--color-dorado-acento);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.marca-logo .marca-titulo {
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--color-crema);
+    line-height: 1.1;
+}
+
+.marca-logo .marca-subtitulo {
+    font-size: 0.75rem;
+    color: var(--color-crema-oscuro);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Perfil del Estudiante en Header */
+.perfil-estudiante-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chip-avatar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 253, 247, 0.12);
+    border: 2px solid var(--color-crema-oscuro);
+    padding: 6px 14px 6px 8px;
+    border-radius: 40px;
+    backdrop-filter: blur(8px);
+}
+
+.avatar-mini {
+    width: 38px;
+    height: 38px;
+    background: var(--color-crema);
+    border-radius: 50%;
+    border: 2px solid var(--color-dorado-acento);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.avatar-mini svg {
+    width: 32px;
+    height: 32px;
+}
+
+.datos-estudiante-mini {
+    display: flex;
+    flex-direction: column;
+}
+
+.nombre-estudiante-mini {
+    font-weight: 800;
+    font-size: 0.95rem;
+    color: var(--color-crema);
+    line-height: 1.2;
+}
+
+.nivel-estudiante-mini {
+    font-size: 0.75rem;
+    color: var(--color-dorado-acento);
+    font-weight: 700;
+}
+
+/* Chips de Estadísticas */
+.stats-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.chip-stat {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-crema);
+    color: var(--color-azul-oscuro);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: 800;
+    font-size: 0.88rem;
+    border: 1.5px solid var(--color-crema-oscuro);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.chip-stat.puntos {
+    border-color: var(--color-dorado-acento);
+    background: #FFF9E6;
+}
+
+/* Botones de Acción en Header */
+.acciones-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-header-icono {
+    background: rgba(255, 253, 247, 0.15);
+    border: 1.5px solid var(--color-crema-oscuro);
+    color: var(--color-crema);
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.15rem;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+
+.btn-header-icono:hover {
+    background: var(--color-crema);
+    color: var(--color-azul-oscuro);
+    transform: translateY(-2px);
+}
+
+.btn-cambiar-estudiante {
+    background: var(--color-crema);
+    color: var(--color-azul-oscuro);
+    border: 2px solid var(--color-dorado-acento);
+    padding: 7px 14px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 0.82rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: var(--transicion-rapida);
+}
+
+.btn-cambiar-estudiante:hover {
+    background: var(--color-crema-medio);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Contenedor Principal y Vistas (SPA)
+   ========================================================================== */
+.contenedor-app {
+    max-width: 1240px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    flex: 1;
+}
+
+.vista-modulo {
+    display: none;
+    animation: fadeInView 0.35s ease;
+}
+
+.vista-modulo.activa {
+    display: block;
+}
+
+@keyframes fadeInView {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==========================================================================
+   ETAPA 2: Menú Principal (Dashboard)
+   ========================================================================== */
+.banner-bienvenida {
+    background: linear-gradient(135deg, var(--color-blanco) 0%, var(--color-crema-medio) 100%);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 28px 32px;
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-bienvenida::before {
+    content: '';
+    position: absolute;
+    right: -40px;
+    top: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    background: rgba(212, 175, 55, 0.12);
+    pointer-events: none;
+}
+
+.saludo-titulo {
+    font-size: 2rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 6px;
+}
+
+.saludo-subtitulo {
+    font-size: 1.05rem;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+}
+
+.progreso-global-widget {
+    background: var(--color-blanco);
+    border: 2px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 14px 20px;
+    min-width: 280px;
+    box-shadow: var(--sombra-suave);
+}
+
+.progreso-global-info {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 800;
+    font-size: 0.9rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.barra-progreso-fondo {
+    background: var(--color-crema-medio);
+    border-radius: 10px;
+    height: 14px;
+    overflow: hidden;
+    border: 1px solid var(--color-crema-oscuro);
+}
+
+.barra-progreso-relleno {
+    background: linear-gradient(9deg, var(--color-azul-medio) 0%, var(--color-dorado-acento) 100%);
+    height: 100%;
+    width: 0%;
+    border-radius: 10px;
+    transition: width 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Grilla de Módulos del Menú Principal */
+.grilla-menu-principal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 22px;
+}
+
+.tarjeta-menu {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 28px 24px;
+    cursor: pointer;
+    transition: var(--transicion-normal);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--sombra-suave);
+}
+
+.tarjeta-menu:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-azul-brillante);
+    box-shadow: var(--sombra-media);
+}
+
+.tarjeta-menu.destacada {
+    background: linear-gradient(145deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    border-color: var(--color-dorado-acento);
+    color: var(--color-blanco);
+    box-shadow: var(--sombra-fuerte);
+}
+
+.tarjeta-menu.destacada .titulo-menu {
+    color: var(--color-crema);
+}
+
+.tarjeta-menu.destacada .descripcion-menu {
+    color: var(--color-crema-medio);
+}
+
+.icono-tarjeta-menu {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    background: var(--color-crema);
+    border: 2.5px solid var(--color-crema-oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 18px;
+    box-shadow: var(--sombra-suave);
+}
+
+.tarjeta-menu.destacada .icono-tarjeta-menu {
+    background: var(--color-crema);
+    border-color: var(--color-dorado-acento);
+}
+
+.tag-tarjeta {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+    background: var(--color-azul-suave);
+    color: var(--color-azul-oscuro);
+    border: 1px solid #C4D7F0;
+}
+
+.tarjeta-menu.destacada .tag-tarjeta {
+    background: var(--color-dorado-acento);
+    color: var(--color-azul-oscuro);
+    border-color: var(--color-crema);
+}
+
+.titulo-menu {
+    font-size: 1.45rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 8px;
+}
+
+.descripcion-menu {
+    font-size: 0.95rem;
+    color: var(--color-texto-secundario);
+    line-height: 1.45;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.pie-tarjeta-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 2px solid var(--color-crema-medio);
+    font-weight: 800;
+    font-size: 0.92rem;
+    color: var(--color-azul-brillante);
+}
+
+.tarjeta-menu.destacada .pie-tarjeta-menu {
+    border-top-color: rgba(255, 253, 247, 0.2);
+    color: var(--color-crema);
+}
+
+.flecha-accion {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: var(--color-crema-medio);
+    color: var(--color-azul-oscuro);
+    transition: var(--transicion-rapida);
+}
+
+.tarjeta-menu:hover .flecha-accion {
+    transform: translateX(5px);
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+}
+
+.tarjeta-menu.destacada .flecha-accion {
+    background: var(--color-crema);
+    color: var(--color-azul-oscuro);
+}
+
+/* Indicador de Bloqueo para SIMCE */
+.tarjeta-menu.bloqueada {
+    opacity: 0.88;
+    background: #FDFBF5;
+    border-color: #D8D2C2;
+}
+
+.badge-candado {
+    background: #EAE6DB;
+    color: #6C757D;
+    font-size: 0.8rem;
+    font-weight: 800;
+    padding: 4px 10px;
+    border-radius: 12px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ==========================================================================
+   Miga de Pan y Encabezados de Módulo
+   ========================================================================== */
+.encabezado-seccion {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 3px solid var(--color-crema-oscuro);
+}
+
+.btn-volver {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-blanco);
+    color: var(--color-azul-oscuro);
+    border: 2px solid var(--color-crema-oscuro);
+    padding: 10px 18px;
+    border-radius: var(--radio-boton);
+    font-weight: 800;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: var(--sombra-suave);
+    transition: var(--transicion-rapida);
+}
+
+.btn-volver:hover {
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border-color: var(--color-azul-oscuro);
+    transform: translateX(-3px);
+}
+
+.titulo-seccion-actual {
+    font-size: 1.85rem;
+    color: var(--color-azul-oscuro);
+}
+
+.subtitulo-seccion-actual {
+    font-size: 0.95rem;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   ETAPA 3: MÓDULO APRENDER TABLAS (Visualizador, Grupos y Patrones)
+   ========================================================================== */
+/* Selector de Tablas (Botones 2 al 10) */
+.selector-tablas-carrusel {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+}
+
+.selector-tablas-carrusel::-webkit-scrollbar {
+    height: 8px;
+}
+.selector-tablas-carrusel::-webkit-scrollbar-thumb {
+    background: var(--color-crema-oscuro);
+    border-radius: 4px;
+}
+
+.btn-pildora-tabla {
+    flex: 0 0 auto;
+    background: var(--color-blanco);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 12px 20px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-azul-oscuro);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    transition: var(--transicion-rapida);
+    min-width: 90px;
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-pildora-tabla:hover {
+    border-color: var(--color-azul-brillante);
+    transform: translateY(-3px);
+}
+
+.btn-pildora-tabla.activa {
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border-color: var(--color-dorado-acento);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-pildora-tabla .estrellas-mini {
+    font-size: 0.72rem;
+    color: var(--color-dorado-acento);
+}
+
+/* Contenedor del Taller de la Tabla */
+.panel-aprendizaje-tabla {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+@media (max-width: 900px) {
+    .panel-aprendizaje-tabla {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tarjeta-didactica {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 24px;
+    box-shadow: var(--sombra-suave);
+}
+
+.tarjeta-didactica h3 {
+    font-size: 1.35rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Controles de Multiplicación Interactiva */
+.control-operacion {
+    background: var(--color-crema);
+    border: 2px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.ecuacion-gigante {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.4rem;
+    font-weight: 900;
+    color: var(--color-azul-oscuro);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+}
+
+.numero-resaltado {
+    background: var(--color-azul-suave);
+    color: var(--color-azul-oscuro);
+    padding: 2px 14px;
+    border-radius: 12px;
+    border: 2px solid var(--color-azul-brillante);
+}
+
+.resultado-resaltado {
+    background: #FFF9E6;
+    color: var(--color-azul-oscuro);
+    padding: 2px 16px;
+    border-radius: 12px;
+    border: 2px solid var(--color-dorado-acento);
+}
+
+.slider-contenedor {
+    margin-top: 15px;
+}
+
+.slider-rango {
+    width: 100%;
+    height: 10px;
+    border-radius: 5px;
+    background: var(--color-crema-oscuro);
+    outline: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+.slider-rango::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--color-azul-oscuro);
+    border: 3px solid var(--color-dorado-acento);
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+/* Visualización Concreta de Grupos */
+.area-visual-grupos {
+    background: var(--color-crema);
+    border: 2px dashed var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 18px;
+    min-height: 200px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    justify-content: center;
+    align-content: flex-start;
+}
+
+.caja-grupo-objeto {
+    background: var(--color-blanco);
+    border: 2px solid var(--color-azul-brillante);
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    max-width: 130px;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+    animation: zoomInGroup 0.3s ease;
+}
+
+@keyframes zoomInGroup {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.icono-elemento-grupo {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+}
+
+/* Suma Iterada y Propiedades */
+.tarjeta-explicacion-modelo {
+    background: var(--color-azul-suave);
+    border: 2px solid #C4D7F0;
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-top: 16px;
+}
+
+.texto-suma-iterada {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 6px;
+}
+
+.texto-conmutativa {
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+}
+
+/* Cuadrícula / Matriz Rectangular */
+.area-matriz-cuadricula {
+    display: inline-grid;
+    gap: 4px;
+    background: var(--color-crema);
+    padding: 14px;
+    border-radius: 14px;
+    border: 2px solid var(--color-crema-oscuro);
+    margin: 10px auto;
+}
+
+.celda-matriz {
+    width: 22px;
+    height: 22px;
+    background: var(--color-azul-oscuro);
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.celda-matriz:hover {
+    transform: scale(1.2);
+    background: var(--color-dorado-acento);
+}
+
+/* Caja de Trucos y Patrones */
+.caja-patron-secreto {
+    background: #FFF9E6;
+    border: 2.5px solid var(--color-dorado-acento);
+    border-radius: 16px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+}
+
+.titulo-patron {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.descripcion-patron {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: #4A3B18;
+    font-weight: 600;
+}
+
+/* Taller de Práctica Rápida de la Tabla */
+.taller-practica-rapida {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 26px;
+    box-shadow: var(--sombra-suave);
+}
+
+.pregunta-taller-contenedor {
+    text-align: center;
+    padding: 20px;
+}
+
+.pregunta-taller-texto {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 20px;
+}
+
+.opciones-taller-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+.btn-opcion-taller {
+    background: var(--color-crema);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 14px;
+    padding: 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: var(--color-azul-oscuro);
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+}
+
+.btn-opcion-taller:hover {
+    background: var(--color-azul-suave);
+    border-color: var(--color-azul-brillante);
+    transform: translateY(-2px);
+}
+
+.btn-opcion-taller.acierto {
+    background: var(--color-verde-suave) !important;
+    border-color: var(--color-verde-exito) !important;
+    color: var(--color-verde-exito) !important;
+}
+
+.btn-opcion-taller.error {
+    background: var(--color-rojo-suave) !important;
+    border-color: var(--color-rojo-alerta) !important;
+    color: var(--color-rojo-alerta) !important;
+}
+
+/* Mensaje de retroalimentación inmediata */
+.retroalimentacion-inmediata {
+    margin-top: 18px;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    display: none;
+    animation: popIn 0.3s ease;
+}
+
+@keyframes popIn {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* ==========================================================================
+   ETAPA 3: MÓDULO JUEGOS Y DESAFÍOS (7 Actividades no monótonas)
+   ========================================================================== */
+.submenu-juegos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 18px;
+    margin-bottom: 28px;
+}
+
+.tarjeta-juego-item {
+    background: var(--color-blanco);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 18px;
+    padding: 20px;
+    cursor: pointer;
+    transition: var(--transicion-normal);
+    box-shadow: var(--sombra-suave);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarjeta-juego-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-azul-brillante);
+    box-shadow: var(--sombra-media);
+}
+
+.tarjeta-juego-item.activo {
+    background: var(--color-azul-oscuro);
+    border-color: var(--color-dorado-acento);
+    color: var(--color-crema);
+}
+
+.tarjeta-juego-item.activo .titulo-juego {
+    color: var(--color-crema);
+}
+
+.tarjeta-juego-item.activo .desc-juego {
+    color: var(--color-crema-medio);
+}
+
+.icono-juego-wrapper {
+    font-size: 2.4rem;
+    margin-bottom: 12px;
+}
+
+.titulo-juego {
+    font-size: 1.25rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 6px;
+}
+
+.desc-juego {
+    font-size: 0.88rem;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 14px;
+}
+
+/* Área de Arena de Juego Activo */
+.arena-juego-activo {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 30px 24px;
+    box-shadow: var(--sombra-media);
+    position: relative;
+    min-height: 480px;
+}
+
+.barra-estado-juego {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--color-crema);
+    border: 2px solid var(--color-crema-oscuro);
+    border-radius: 14px;
+    padding: 12px 20px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+/* JUEGO 1: Memoria Matemática */
+.tablero-memoria {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    max-width: 620px;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .tablero-memoria {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+}
+
+.carta-memoria {
+    aspect-ratio: 1 / 1;
+    background: var(--color-azul-oscuro);
+    border: 3px solid var(--color-dorado-acento);
+    border-radius: 16px;
+    cursor: pointer;
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 900;
+    color: var(--color-crema);
+    box-shadow: var(--sombra-suave);
+    transition: transform 0.25s;
+    user-select: none;
+}
+
+.carta-memoria:hover {
+    transform: scale(1.04);
+}
+
+.carta-memoria.volteada {
+    background: var(--color-crema);
+    color: var(--color-azul-oscuro);
+    border-color: var(--color-azul-brillante);
+}
+
+.carta-memoria.emparejada {
+    background: var(--color-verde-suave);
+    border-color: var(--color-verde-exito);
+    color: var(--color-verde-exito);
+    cursor: default;
+    transform: scale(0.96);
+}
+
+/* JUEGO 2: Atrapa el Resultado */
+.pantalla-atrapa {
+    text-align: center;
+    position: relative;
+    padding: 20px 0;
+}
+
+.burbujas-contenedor {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.burbuja-resultado {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #FFFFFF, var(--color-azul-suave));
+    border: 3.5px solid var(--color-azul-oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--color-azul-oscuro);
+    cursor: pointer;
+    box-shadow: 0 8px 18px rgba(11, 27, 61, 0.15);
+    animation: flotarBurbuja 3s ease-in-out infinite alternate;
+    transition: transform 0.2s, background-color 0.2s;
+}
+
+.burbuja-resultado:hover {
+    transform: scale(1.15);
+    border-color: var(--color-dorado-acento);
+}
+
+@keyframes flotarBurbuja {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-12px); }
+}
+
+/* JUEGO 3: Construye la Multiplicación */
+.area-construye {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.panel-controles-construye {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    background: var(--color-crema);
+    border: 2px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 18px;
+    margin: 20px 0;
+}
+
+.control-contador {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.controles-btn-grupo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-sumar-restar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border: 2px solid var(--color-dorado-acento);
+    font-size: 1.3rem;
+    font-weight: 900;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.valor-contador {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    min-width: 35px;
+}
+
+/* JUEGO 4: ¿Quién tiene la respuesta? */
+.personajes-fila {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.tarjeta-personaje-pregunta {
+    background: var(--color-crema);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: 20px;
+    padding: 20px;
+    width: 180px;
+    cursor: pointer;
+    text-align: center;
+    transition: var(--transicion-normal);
+    box-shadow: var(--sombra-suave);
+}
+
+.tarjeta-personaje-pregunta:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-azul-brillante);
+}
+
+.pizarra-personaje {
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border: 2.5px solid var(--color-dorado-acento);
+    border-radius: 12px;
+    padding: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 900;
+    margin-top: 12px;
+}
+
+/* JUEGO 5: Desafío Contra el Tiempo */
+.cronometro-grande {
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--color-azul-oscuro);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.cronometro-grande.alerta {
+    color: var(--color-rojo-alerta);
+    animation: sacudir 0.5s infinite;
+}
+
+/* JUEGO 6: Arrastra y Completa (Tap & Slot) */
+.zona-arrastra {
+    max-width: 640px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.ecuacion-incompleta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 2.6rem;
+    font-weight: 900;
+    margin: 25px 0;
+}
+
+.casilla-destino {
+    min-width: 75px;
+    height: 75px;
+    background: var(--color-crema);
+    border: 3px dashed var(--color-azul-brillante);
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--color-azul-oscuro);
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+}
+
+.fichas-disponibles {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.ficha-numero {
+    width: 65px;
+    height: 65px;
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border: 2.5px solid var(--color-dorado-acento);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    box-shadow: var(--sombra-suave);
+    user-select: none;
+}
+
+.ficha-numero:hover {
+    transform: scale(1.12);
+    background: var(--color-azul-medio);
+}
+
+/* JUEGO 7: Detective Matemático */
+.panel-detective {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #FFFDF7;
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: 20px;
+    padding: 26px;
+}
+
+.pistas-lista {
+    list-style: none;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.item-pista {
+    background: var(--color-azul-suave);
+    border-left: 5px solid var(--color-azul-oscuro);
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--color-azul-oscuro);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* ==========================================================================
+   ETAPA 4: ENSAYO MATEMÁTICO TIPO SIMCE (4° Básico Contextualizado)
+   ========================================================================== */
+.contenedor-ensayo-simce {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 860px) {
+    .contenedor-ensayo-simce {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Barra Lateral de Preguntas (1 al 10) */
+.panel-lateral-simce {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 22px 18px;
+    box-shadow: var(--sombra-suave);
+    position: sticky;
+    top: 90px;
+}
+
+.titulo-panel-lateral {
+    font-size: 1.15rem;
+    color: var(--color-azul-oscuro);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.resumen-respuestas-texto {
+    font-size: 0.85rem;
+    color: var(--color-texto-secundario);
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.grilla-navegador-preguntas {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.btn-navegacion-pregunta {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--color-crema);
+    border: 2px solid var(--color-crema-oscuro);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--color-azul-oscuro);
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.btn-navegacion-pregunta:hover {
+    border-color: var(--color-azul-brillante);
+    background: var(--color-azul-suave);
+}
+
+.btn-navegacion-pregunta.activa {
+    background: var(--color-azul-oscuro) !important;
+    color: var(--color-crema) !important;
+    border-color: var(--color-dorado-acento) !important;
+    box-shadow: 0 4px 10px rgba(11, 27, 61, 0.25);
+    transform: scale(1.05);
+}
+
+.btn-navegacion-pregunta.respondida {
+    background: var(--color-crema-medio);
+    border-color: var(--color-azul-brillante);
+}
+
+.btn-navegacion-pregunta.respondida::after {
+    content: '•';
+    position: absolute;
+    bottom: 2px;
+    color: var(--color-azul-brillante);
+    font-size: 1.2rem;
+    font-weight: 900;
+}
+
+.btn-finalizar-simce {
+    width: 100%;
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    color: var(--color-crema);
+    border: 2px solid var(--color-dorado-acento);
+    padding: 14px;
+    border-radius: var(--radio-boton);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: var(--transicion-normal);
+    box-shadow: var(--sombra-suave);
+}
+
+.btn-finalizar-simce:hover {
+    background: var(--color-azul-medio);
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+/* Área Principal de la Pregunta SIMCE */
+.area-principal-pregunta {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 32px 28px;
+    box-shadow: var(--sombra-suave);
+}
+
+.etiqueta-contexto-pregunta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-crema);
+    border: 1.5px solid var(--color-crema-oscuro);
+    color: var(--color-azul-oscuro);
+    font-size: 0.85rem;
+    font-weight: 800;
+    padding: 6px 14px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+}
+
+.enunciado-pregunta {
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--color-azul-oscuro);
+    line-height: 1.5;
+    margin-bottom: 22px;
+}
+
+.ilustracion-problema-simce {
+    background: var(--color-crema);
+    border: 2px dashed var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Alternativas de Selección Múltiple (A, B, C, D) */
+.grilla-alternativas-simce {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 28px;
+}
+
+.opcion-alternativa-btn {
+    background: var(--color-crema);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    cursor: pointer;
+    transition: var(--transicion-rapida);
+    text-align: left;
+}
+
+.opcion-alternativa-btn:hover {
+    background: var(--color-azul-suave);
+    border-color: var(--color-azul-brillante);
+    transform: translateX(4px);
+}
+
+.opcion-alternativa-btn.seleccionada {
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border-color: var(--color-dorado-acento);
+    box-shadow: var(--sombra-media);
+}
+
+.letra-alternativa {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--color-blanco);
+    color: var(--color-azul-oscuro);
+    border: 2px solid var(--color-crema-oscuro);
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.opcion-alternativa-btn.seleccionada .letra-alternativa {
+    background: var(--color-dorado-acento);
+    color: var(--color-azul-oscuro);
+    border-color: var(--color-blanco);
+}
+
+.texto-alternativa {
+    font-size: 1.05rem;
+    font-weight: 700;
+    line-height: 1.35;
+}
+
+/* Botones de Navegación del Ensayo */
+.fila-controles-ensayo {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding-top: 18px;
+    border-top: 2px solid var(--color-crema-medio);
+}
+
+.btn-control-ensayo {
+    background: var(--color-blanco);
+    border: 2.5px solid var(--color-crema-oscuro);
+    color: var(--color-azul-oscuro);
+    padding: 12px 22px;
+    border-radius: var(--radio-boton);
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: var(--transicion-rapida);
+}
+
+.btn-control-ensayo:hover:not(:disabled) {
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+}
+
+.btn-control-ensayo:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* ==========================================================================
+   PANTALLA DE RESULTADOS Y RETROALIMENTACIÓN SIMCE
+   ========================================================================== */
+.pantalla-resultados-simce {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    padding: 35px 30px;
+    box-shadow: var(--sombra-media);
+    text-align: center;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.tarjeta-puntaje-simce {
+    background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+    border: 3px solid var(--color-dorado-acento);
+    border-radius: 20px;
+    color: var(--color-crema);
+    padding: 30px 20px;
+    margin: 20px 0 30px;
+}
+
+.valor-puntaje-grande {
+    font-family: 'Outfit', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--color-dorado-acento);
+    line-height: 1;
+    margin: 10px 0;
+}
+
+.insignia-nivel-desempeno {
+    display: inline-block;
+    padding: 8px 24px;
+    border-radius: 30px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 800;
+    margin-top: 10px;
+}
+
+.nivel-adecuado {
+    background: var(--color-verde-exito);
+    color: #FFFFFF;
+}
+
+.nivel-elemental {
+    background: var(--color-dorado-acento);
+    color: var(--color-azul-oscuro);
+}
+
+.nivel-insuficiente {
+    background: var(--color-rojo-alerta);
+    color: #FFFFFF;
+}
+
+.desglose-respuestas-simce {
+    text-align: left;
+    margin-top: 30px;
+}
+
+.item-revision-pregunta {
+    background: var(--color-crema);
+    border: 2px solid var(--color-crema-oscuro);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-bottom: 14px;
+}
+
+.item-revision-pregunta.correcta {
+    border-left: 6px solid var(--color-verde-exito);
+}
+
+.item-revision-pregunta.incorrecta {
+    border-left: 6px solid var(--color-rojo-alerta);
+}
+
+.explicacion-pedagogica {
+    margin-top: 8px;
+    font-size: 0.92rem;
+    color: var(--color-azul-medio);
+    font-weight: 600;
+    background: #FFFDF7;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+/* ==========================================================================
+   MÓDULO PROGRESO Y LOGROS
+   ========================================================================== */
+.grilla-tablas-progreso {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 20px;
+}
+
+.tarjeta-progreso-tabla {
+    background: var(--color-blanco);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 16px;
+    padding: 18px;
+    box-shadow: var(--sombra-suave);
+}
+
+.grilla-logros {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.tarjeta-logro {
+    background: var(--color-blanco);
+    border: 2.5px solid var(--color-crema-oscuro);
+    border-radius: 18px;
+    padding: 22px;
+    text-align: center;
+    box-shadow: var(--sombra-suave);
+    position: relative;
+    transition: var(--transicion-rapida);
+}
+
+.tarjeta-logro.desbloqueado {
+    border-color: var(--color-dorado-acento);
+    background: #FFFDF7;
+}
+
+.tarjeta-logro.bloqueado {
+    opacity: 0.55;
+    filter: grayscale(80%);
+}
+
+.icono-trofeo-logro {
+    font-size: 2.8rem;
+    margin-bottom: 10px;
+}
+
+/* ==========================================================================
+   Modales y Mensajes Flotantes (Toasts)
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(11, 27, 61, 0.6);
+    backdrop-filter: blur(5px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-overlay.abierto {
+    display: flex;
+    animation: fadeIn 0.25s ease;
+}
+
+.modal-caja {
+    background: var(--color-blanco);
+    border: 3px solid var(--color-crema-oscuro);
+    border-radius: var(--radio-tarjeta);
+    max-width: 500px;
+    width: 100%;
+    padding: 30px;
+    text-align: center;
+    box-shadow: var(--sombra-fuerte);
+    animation: zoomInModal 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes zoomInModal {
+    from { transform: scale(0.9); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.toast-flotante {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    background: var(--color-azul-oscuro);
+    color: var(--color-crema);
+    border: 2px solid var(--color-dorado-acento);
+    border-radius: 14px;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 1rem;
+    box-shadow: var(--sombra-fuerte);
+    transform: translateY(120%);
+    transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 3000;
+}
+
+.toast-flotante.mostrar {
+    transform: translateY(0);
+}
+
+/* Pie de Página en Sistema */
+.pie-sistema {
+    text-align: center;
+    padding: 22px 20px;
+    background: var(--color-crema-medio);
+    border-top: 2px solid var(--color-crema-oscuro);
+    font-size: 0.9rem;
+    color: var(--color-texto-secundario);
+    font-weight: 600;
+}
+
+.pie-sistema strong {
+    color: var(--color-azul-oscuro);
+}

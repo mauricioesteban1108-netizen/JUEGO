@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Escudo Circular -->
+    <circle cx="100" cy="100" r="90" fill="#0B1B3D" stroke="#D4AF37" stroke-width="6"/>
+    <!-- Corona de Laureles / Borde Interno -->
+    <circle cx="100" cy="100" r="76" fill="#132D63" stroke="#FFFDF7" stroke-width="2" stroke-dasharray="6,4"/>
+    <!-- Texto o Icono SIMCE -->
+    <rect x="55" y="60" width="90" height="70" rx="12" fill="#FFFDF7"/>
+    <!-- Lápiz y Check -->
+    <path d="M75 95L88 108L125 72" stroke="#27AE60" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="100" y="160" text-anchor="middle" fill="#D4AF37" font-family="Arial, sans-serif" font-size="20" font-weight="bold">SIMCE 4°</text>
+</svg>

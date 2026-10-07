@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MultiAventura 4° | Ingreso de Estudiantes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Paleta Oficial Requerida: Blanco, Azul Oscuro y Crema */
+            --color-blanco: #FFFFFF;
+            --color-azul-oscuro: #0B1B3D;
+            --color-azul-medio: #132D63;
+            --color-azul-brillante: #1E4E8C;
+            --color-azul-suave: #E9F0FA;
+            --color-crema: #FFFDF7;
+            --color-crema-medio: #F8F1DF;
+            --color-crema-oscuro: #EADCB9;
+            --color-dorado-acento: #D4AF37;
+            --color-texto-oscuro: #0B1B3D;
+            --color-texto-crema: #FDF9EE;
+            --color-verde-exito: #2E7D32;
+            --color-rojo-alerta: #C62828;
+            --sombra-elegante: 0 12px 36px rgba(11, 27, 61, 0.15);
+            --sombra-hover: 0 18px 42px rgba(11, 27, 61, 0.22);
+            --borde-radio: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--color-crema);
+            background-image: 
+                radial-gradient(circle at 15% 20%, rgba(19, 45, 99, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(234, 220, 185, 0.4) 0%, transparent 50%),
+                linear-gradient(135deg, #FFFDF7 0%, #FAF3E3 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 15px;
+            color: var(--color-texto-oscuro);
+        }
+
+        .contenedor-principal {
+            width: 100%;
+            max-width: 760px;
+            background: var(--color-blanco);
+            border-radius: var(--borde-radio);
+            border: 3px solid var(--color-crema-oscuro);
+            box-shadow: var(--sombra-elegante);
+            overflow: hidden;
+            animation: aparecerSuave 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes aparecerSuave {
+            from {
+                opacity: 0;
+                transform: translateY(24px) scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Encabezado */
+        .encabezado-login {
+            background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+            color: var(--color-blanco);
+            padding: 35px 25px 25px;
+            text-align: center;
+            position: relative;
+            border-bottom: 5px solid var(--color-crema-oscuro);
+        }
+
+        .logo-contenedor {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--color-crema);
+            width: 82px;
+            height: 82px;
+            border-radius: 50%;
+            border: 4px solid var(--color-dorado-acento);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+            margin-bottom: 15px;
+            animation: flotar 3s ease-in-out infinite;
+        }
+
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-7px); }
+        }
+
+        .titulo-plataforma {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.1rem;
+            font-weight: 900;
+            letter-spacing: -0.5px;
+            color: var(--color-crema);
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 6px;
+        }
+
+        .subtitulo-plataforma {
+            font-size: 1.05rem;
+            color: var(--color-crema-medio);
+            font-weight: 600;
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        .etiqueta-nivel {
+            display: inline-block;
+            background: var(--color-crema-medio);
+            color: var(--color-azul-oscuro);
+            font-size: 0.85rem;
+            font-weight: 800;
+            padding: 4px 14px;
+            border-radius: 20px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            border: 1px solid var(--color-dorado-acento);
+        }
+
+        /* Cuerpo del formulario */
+        .cuerpo-formulario {
+            padding: 32px 35px;
+            background: var(--color-blanco);
+        }
+
+        .grupo-campo {
+            margin-bottom: 26px;
+        }
+
+        .etiqueta-campo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: var(--color-azul-oscuro);
+            margin-bottom: 10px;
+        }
+
+        .icono-etiqueta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 28px;
+            height: 28px;
+            background: var(--color-crema-medio);
+            border-radius: 8px;
+            color: var(--color-azul-oscuro);
+            font-size: 1rem;
+        }
+
+        .input-nombre {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: 2.5px solid var(--color-crema-oscuro);
+            border-radius: 14px;
+            background-color: var(--color-crema);
+            color: var(--color-azul-oscuro);
+            transition: all 0.25s ease;
+            outline: none;
+        }
+
+        .input-nombre:focus {
+            border-color: var(--color-azul-brillante);
+            background-color: var(--color-blanco);
+            box-shadow: 0 0 0 4px rgba(30, 78, 140, 0.15);
+        }
+
+        .input-nombre::placeholder {
+            color: #9aa8ba;
+            font-weight: 500;
+        }
+
+        /* Grilla de Avatares */
+        .grilla-avatares {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        @media (max-width: 600px) {
+            .grilla-avatares {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .cuerpo-formulario {
+                padding: 24px 20px;
+            }
+            .titulo-plataforma {
+                font-size: 1.7rem;
+            }
+        }
+
+        .tarjeta-avatar {
+            background: var(--color-crema);
+            border: 2.5px solid var(--color-crema-oscuro);
+            border-radius: 16px;
+            padding: 14px 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            user-select: none;
+        }
+
+        .tarjeta-avatar:hover {
+            transform: translateY(-4px);
+            border-color: var(--color-azul-brillante);
+            background: #FAF5E8;
+            box-shadow: 0 8px 18px rgba(11, 27, 61, 0.08);
+        }
+
+        .tarjeta-avatar.seleccionado {
+            background: var(--color-azul-oscuro);
+            border-color: var(--color-dorado-acento);
+            transform: scale(1.03);
+            box-shadow: 0 8px 24px rgba(11, 27, 61, 0.25);
+        }
+
+        .tarjeta-avatar.seleccionado .nombre-avatar {
+            color: var(--color-crema);
+            font-weight: 800;
+        }
+
+        .tarjeta-avatar.seleccionado .icono-check {
+            display: flex;
+        }
+
+        .svg-avatar {
+            width: 68px;
+            height: 68px;
+            margin-bottom: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .tarjeta-avatar:hover .svg-avatar {
+            transform: scale(1.1);
+        }
+
+        .nombre-avatar {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--color-azul-oscuro);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .icono-check {
+            display: none;
+            position: absolute;
+            top: -7px;
+            right: -7px;
+            background: var(--color-dorado-acento);
+            color: var(--color-azul-oscuro);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 900;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            border: 2px solid var(--color-blanco);
+        }
+
+        /* Mensajes de Alerta / Validación */
+        .caja-alerta {
+            display: none;
+            background: #FDEDEC;
+            border-left: 5px solid var(--color-rojo-alerta);
+            color: var(--color-rojo-alerta);
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            animation: sacudir 0.4s ease;
+        }
+
+        @keyframes sacudir {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-6px); }
+            40%, 80% { transform: translateX(6px); }
+        }
+
+        /* Botón de Ingreso */
+        .btn-ingresar {
+            width: 100%;
+            background: linear-gradient(135deg, var(--color-azul-oscuro) 0%, var(--color-azul-medio) 100%);
+            color: var(--color-crema);
+            border: 2.5px solid var(--color-dorado-acento);
+            padding: 18px 24px;
+            font-size: 1.25rem;
+            font-weight: 800;
+            font-family: 'Outfit', sans-serif;
+            border-radius: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 8px 20px rgba(11, 27, 61, 0.25);
+            transition: all 0.3s ease;
+        }
+
+        .btn-ingresar:hover {
+            background: linear-gradient(135deg, var(--color-azul-medio) 0%, var(--color-azul-brillante) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(11, 27, 61, 0.35);
+            color: var(--color-blanco);
+        }
+
+        .btn-ingresar:active {
+            transform: translateY(1px);
+        }
+
+        /* Banner de Estudiante Anterior */
+        .banner-sesion-previa {
+            display: none;
+            background: var(--color-azul-suave);
+            border: 2px dashed var(--color-azul-brillante);
+            border-radius: 14px;
+            padding: 15px 18px;
+            margin-bottom: 22px;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .banner-sesion-previa .texto-previo {
+            font-size: 0.95rem;
+            color: var(--color-azul-oscuro);
+            font-weight: 700;
+        }
+
+        .btn-continuar-previo {
+            background: var(--color-azul-oscuro);
+            color: var(--color-crema);
+            border: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-continuar-previo:hover {
+            background: var(--color-azul-brillante);
+        }
+
+        /* Pie de página institucional */
+        .pie-login {
+            text-align: center;
+            padding: 18px 20px;
+            background: var(--color-crema-medio);
+            border-top: 2px solid var(--color-crema-oscuro);
+            font-size: 0.88rem;
+            color: #5A6A85;
+            font-weight: 600;
+        }
+
+        .pie-login strong {
+            color: var(--color-azul-oscuro);
+        }
+    </style>
+</head>
+<body>
+
+    <main class="contenedor-principal" role="main">
+        <!-- Encabezado con Identidad Visual -->
+        <header class="encabezado-login">
+            <div class="logo-contenedor" aria-label="Logo MultiAventura">
+                <!-- SVG Logo: Libro, Estrella y Multiplicación -->
+                <svg width="52" height="52" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="8" y="14" width="48" height="40" rx="8" fill="#0B1B3D"/>
+                    <path d="M12 48C20 45 28 45 32 49C36 45 44 45 52 48V20C44 17 36 17 32 21C28 17 20 17 12 20V48Z" fill="#FFFDF7"/>
+                    <path d="M32 21V49" stroke="#0B1B3D" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M22 27L28 33M28 27L22 33" stroke="#D4AF37" stroke-width="3" stroke-linecap="round"/>
+                    <path d="M42 27V33M39 30H45" stroke="#1E4E8C" stroke-width="3" stroke-linecap="round"/>
+                    <circle cx="32" cy="11" r="5" fill="#D4AF37"/>
+                </svg>
+            </div>
+            <h1 class="titulo-plataforma">MultiAventura 4°</h1>
+            <p class="subtitulo-plataforma">Plataforma Interactiva de Tablas de Multiplicar y Preparación SIMCE</p>
+            <div class="etiqueta-nivel">Matemática 4° Básico • Departamento de Informática</div>
+        </header>
+
+        <!-- Formulario de Identificación y Selección de Avatar -->
+        <section class="cuerpo-formulario">
+            <!-- Aviso si ya existe progreso guardado -->
+            <div id="bannerSesionPrevia" class="banner-sesion-previa">
+                <div class="texto-previo">
+                    👋 ¡Hola de nuevo! Hay una aventura guardada de <strong id="nombrePrevio">Estudiante</strong>.
+                </div>
+                <button type="button" id="btnContinuarPrevio" class="btn-continuar-previo">
+                    Continuar Aventura →
+                </button>
+            </div>
+
+            <form id="formularioIngreso" novalidate>
+                <!-- Campo Nombre -->
+                <div class="grupo-campo">
+                    <label for="inputNombre" class="etiqueta-campo">
+                        <span class="icono-etiqueta">👤</span>
+                        <span>Ingresa tu Nombre y Apellido:</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="inputNombre" 
+                        class="input-nombre" 
+                        placeholder="Ej: Sofía González" 
+                        autocomplete="name"
+                        maxlength="30"
+                        required
+                    >
+                </div>
+
+                <!-- Selección de Avatar -->
+                <div class="grupo-campo">
+                    <div class="etiqueta-campo">
+                        <span class="icono-etiqueta">⭐</span>
+                        <span>Elige tu Avatar Aventurero:</span>
+                    </div>
+
+                    <div class="grilla-avatares" id="grillaAvatares" role="radiogroup" aria-label="Selección de Avatar">
+                        <!-- Avatar 1: Leo el León -->
+                        <div class="tarjeta-avatar" data-id="leon" data-nombre="Leo el León Sabio" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#F8F1DF" stroke="#D4AF37" stroke-width="4"/>
+                                <circle cx="50" cy="50" r="34" fill="#F5B041"/>
+                                <!-- Melena -->
+                                <circle cx="50" cy="22" r="10" fill="#D35400"/>
+                                <circle cx="28" cy="30" r="10" fill="#D35400"/>
+                                <circle cx="72" cy="30" r="10" fill="#D35400"/>
+                                <circle cx="20" cy="50" r="10" fill="#D35400"/>
+                                <circle cx="80" cy="50" r="10" fill="#D35400"/>
+                                <circle cx="30" cy="70" r="10" fill="#D35400"/>
+                                <circle cx="70" cy="70" r="10" fill="#D35400"/>
+                                <circle cx="50" cy="50" r="28" fill="#FAD7A0"/>
+                                <!-- Ojos y Cara -->
+                                <circle cx="41" cy="46" r="4" fill="#0B1B3D"/>
+                                <circle cx="59" cy="46" r="4" fill="#0B1B3D"/>
+                                <polygon points="50,53 45,59 55,59" fill="#0B1B3D"/>
+                                <path d="M45 61Q50 66 55 61" stroke="#0B1B3D" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="nombre-avatar">Leo el León</span>
+                        </div>
+
+                        <!-- Avatar 2: Tito el Búho -->
+                        <div class="tarjeta-avatar" data-id="buho" data-nombre="Tito el Búho Sabio" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#E9F0FA" stroke="#132D63" stroke-width="4"/>
+                                <ellipse cx="50" cy="54" rx="30" ry="32" fill="#5D6D7E"/>
+                                <ellipse cx="50" cy="58" rx="20" ry="22" fill="#FFFDF7"/>
+                                <!-- Orejas / Plumas -->
+                                <polygon points="28,26 38,38 24,42" fill="#34495E"/>
+                                <polygon points="72,26 62,38 76,42" fill="#34495E"/>
+                                <!-- Ojos Grandes con Lentes -->
+                                <circle cx="38" cy="46" r="12" fill="#FFFDF7" stroke="#0B1B3D" stroke-width="3"/>
+                                <circle cx="62" cy="46" r="12" fill="#FFFDF7" stroke="#0B1B3D" stroke-width="3"/>
+                                <line x1="50" y1="46" x2="50" y2="46" stroke="#0B1B3D" stroke-width="3"/>
+                                <circle cx="38" cy="46" r="5" fill="#0B1B3D"/>
+                                <circle cx="62" cy="46" r="5" fill="#0B1B3D"/>
+                                <polygon points="50,52 46,59 54,59" fill="#E67E22"/>
+                            </svg>
+                            <span class="nombre-avatar">Tito el Búho</span>
+                        </div>
+
+                        <!-- Avatar 3: Alex el Robot -->
+                        <div class="tarjeta-avatar" data-id="robot" data-nombre="Alex el Robot Calculín" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#F8F1DF" stroke="#D4AF37" stroke-width="4"/>
+                                <!-- Antena -->
+                                <line x1="50" y1="18" x2="50" y2="28" stroke="#132D63" stroke-width="4"/>
+                                <circle cx="50" cy="16" r="5" fill="#E74C3C"/>
+                                <!-- Cabeza Cuadrada -->
+                                <rect x="25" y="28" width="50" height="44" rx="10" fill="#0B1B3D" stroke="#D4AF37" stroke-width="3"/>
+                                <!-- Pantalla de ojos -->
+                                <rect x="33" y="38" width="34" height="15" rx="5" fill="#132D63"/>
+                                <circle cx="42" cy="45" r="4" fill="#2ECC71"/>
+                                <circle cx="58" cy="45" r="4" fill="#2ECC71"/>
+                                <!-- Boca de leds -->
+                                <line x1="36" y1="60" x2="64" y2="60" stroke="#FFFDF7" stroke-width="3" stroke-dasharray="3,3"/>
+                            </svg>
+                            <span class="nombre-avatar">Alex el Robot</span>
+                        </div>
+
+                        <!-- Avatar 4: Maya Astronauta -->
+                        <div class="tarjeta-avatar" data-id="astronauta" data-nombre="Maya la Astronauta" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#E9F0FA" stroke="#132D63" stroke-width="4"/>
+                                <!-- Casco -->
+                                <circle cx="50" cy="48" r="32" fill="#FFFDF7" stroke="#0B1B3D" stroke-width="3"/>
+                                <!-- Visor -->
+                                <rect x="26" y="34" width="48" height="28" rx="14" fill="#132D63" stroke="#D4AF37" stroke-width="2.5"/>
+                                <!-- Reflejo -->
+                                <ellipse cx="38" cy="42" rx="6" ry="3" fill="#FFFDF7" transform="rotate(-20 38 42)"/>
+                                <path d="M30 76C30 70 40 68 50 68C60 68 70 70 70 76V82H30V76Z" fill="#1E4E8C"/>
+                            </svg>
+                            <span class="nombre-avatar">Maya Astronauta</span>
+                        </div>
+
+                        <!-- Avatar 5: Luna la Zorra -->
+                        <div class="tarjeta-avatar" data-id="zorra" data-nombre="Luna la Detective" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#F8F1DF" stroke="#D4AF37" stroke-width="4"/>
+                                <!-- Orejas -->
+                                <polygon points="26,18 42,34 20,40" fill="#E67E22"/>
+                                <polygon points="74,18 58,34 80,40" fill="#E67E22"/>
+                                <polygon points="28,24 38,34 24,38" fill="#FFFDF7"/>
+                                <polygon points="72,24 62,34 76,38" fill="#FFFDF7"/>
+                                <!-- Rostro -->
+                                <polygon points="50,75 22,44 78,44" fill="#E67E22"/>
+                                <polygon points="50,75 32,50 68,50" fill="#FFFDF7"/>
+                                <circle cx="38" cy="46" r="4" fill="#0B1B3D"/>
+                                <circle cx="62" cy="46" r="4" fill="#0B1B3D"/>
+                                <circle cx="50" cy="72" r="4" fill="#0B1B3D"/>
+                            </svg>
+                            <span class="nombre-avatar">Luna Detective</span>
+                        </div>
+
+                        <!-- Avatar 6: Sam el Mago -->
+                        <div class="tarjeta-avatar" data-id="mago" data-nombre="Sam el Mago Numérico" role="radio" tabindex="0" aria-checked="false">
+                            <span class="icono-check">✓</span>
+                            <svg class="svg-avatar" viewBox="0 0 100 100" fill="none">
+                                <circle cx="50" cy="50" r="46" fill="#E9F0FA" stroke="#132D63" stroke-width="4"/>
+                                <!-- Cabeza -->
+                                <circle cx="50" cy="56" r="22" fill="#FAD7A0"/>
+                                <!-- Sombrero de mago -->
+                                <polygon points="50,14 26,46 74,46" fill="#0B1B3D"/>
+                                <ellipse cx="50" cy="46" rx="32" ry="7" fill="#132D63" stroke="#D4AF37" stroke-width="2"/>
+                                <polygon points="50,28 52,32 56,33 53,36 54,40 50,38 46,40 47,36 44,33 48,32" fill="#D4AF37"/>
+                                <!-- Ojos -->
+                                <circle cx="43" cy="57" r="3" fill="#0B1B3D"/>
+                                <circle cx="57" cy="57" r="3" fill="#0B1B3D"/>
+                                <path d="M46 66Q50 70 54 66" stroke="#0B1B3D" stroke-width="2" fill="none"/>
+                            </svg>
+                            <span class="nombre-avatar">Sam el Mago</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Caja de Error / Alerta -->
+                <div id="cajaAlerta" class="caja-alerta" role="alert">
+                    ⚠️ Por favor ingresa tu nombre y selecciona un avatar para continuar.
+                </div>
+
+                <!-- Botón de Ingreso -->
+                <button type="submit" id="btnIngresar" class="btn-ingresar">
+                    <span>¡Entrar a la Aventura!</span>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                        <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <!-- Pie Institucional -->
+        <footer class="pie-login">
+            Proyecto Educativo 4° Básico • <strong>Plataforma Matemática & SIMCE</strong> • Diseñado con colores Blanco, Azul Oscuro y Crema
+        </footer>
+    </main>
+
+    <script>
+        // Lógica de Ingreso y Validación de Estudiante
+        document.addEventListener('DOMContentLoaded', () => {
+            const formulario = document.getElementById('formularioIngreso');
+            const inputNombre = document.getElementById('inputNombre');
+            const grillaAvatares = document.getElementById('grillaAvatares');
+            const tarjetasAvatar = document.querySelectorAll('.tarjeta-avatar');
+            const cajaAlerta = document.getElementById('cajaAlerta');
+            const bannerSesion = document.getElementById('bannerSesionPrevia');
+            const nombrePrevio = document.getElementById('nombrePrevio');
+            const btnContinuarPrevio = document.getElementById('btnContinuarPrevio');
+
+            let avatarSeleccionadoId = null;
+            let avatarSeleccionadoNombre = '';
+
+            // Verificar si ya existe un perfil en localStorage
+            const perfilGuardado = localStorage.getItem('estudiante_multiaventura');
+            if (perfilGuardado) {
+                try {
+                    const datos = JSON.parse(perfilGuardado);
+                    if (datos && datos.nombre) {
+                        nombrePrevio.textContent = datos.nombre;
+                        bannerSesion.style.display = 'flex';
+                        // Pre-seleccionar en el formulario por conveniencia
+                        inputNombre.value = datos.nombre;
+                        if (datos.avatarId) {
+                            seleccionarAvatar(datos.avatarId, datos.avatarNombre);
+                        }
+                    }
+                } catch (e) {
+                    console.warn('Error leyendo perfil previo:', e);
+                }
+            }
+
+            // Manejo de clic en botón continuar sesión previa
+            btnContinuarPrevio.addEventListener('click', () => {
+                redirigirASistema();
+            });
+
+            // Selección de Avatar
+            tarjetasAvatar.forEach(tarjeta => {
+                tarjeta.addEventListener('click', () => {
+                    const id = tarjeta.getAttribute('data-id');
+                    const nombre = tarjeta.getAttribute('data-nombre');
+                    seleccionarAvatar(id, nombre);
+                });
+
+                // Soporte para accesibilidad (tecla Enter o Espacio)
+                tarjeta.addEventListener('keydown', (e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        tarjeta.click();
+                    }
+                });
+            });
+
+            function seleccionarAvatar(id, nombre) {
+                tarjetasAvatar.forEach(t => {
+                    t.classList.remove('seleccionado');
+                    t.setAttribute('aria-checked', 'false');
+                });
+
+                const seleccionada = document.querySelector(`.tarjeta-avatar[data-id="${id}"]`);
+                if (seleccionada) {
+                    seleccionada.classList.add('seleccionado');
+                    seleccionada.setAttribute('aria-checked', 'true');
+                    avatarSeleccionadoId = id;
+                    avatarSeleccionadoNombre = nombre;
+                    cajaAlerta.style.display = 'none';
+                }
+            }
+
+            // Validación al enviar el formulario
+            formulario.addEventListener('submit', (e) => {
+                e.preventDefault();
+
+                const nombreLimpio = inputNombre.value.trim();
+
+                // Validaciones
+                if (nombreLimpio.length < 2) {
+                    mostrarAlerta('✍️ Por favor ingresa tu nombre (mínimo 2 letras) para poder identificarte.');
+                    inputNombre.focus();
+                    return;
+                }
+
+                if (!avatarSeleccionadoId) {
+                    mostrarAlerta('🌟 Por favor selecciona un avatar haciendo clic sobre uno de los personajes.');
+                    return;
+                }
+
+                // Cargar o inicializar datos completos del estudiante
+                let datosEstudiante = {};
+                if (perfilGuardado) {
+                    try {
+                        datosEstudiante = JSON.parse(perfilGuardado);
+                    } catch (err) {}
+                }
+
+                // Guardar/actualizar datos
+                datosEstudiante.nombre = nombreLimpio;
+                datosEstudiante.avatarId = avatarSeleccionadoId;
+                datosEstudiante.avatarNombre = avatarSeleccionadoNombre;
+                datosEstudiante.fechaUltimoIngreso = new Date().toISOString();
+
+                // Inicializar progreso si es nuevo
+                if (!datosEstudiante.puntos) datosEstudiante.puntos = 0;
+                if (!datosEstudiante.nivel) datosEstudiante.nivel = 1;
+                if (!datosEstudiante.tablasDominadas) datosEstudiante.tablasDominadas = [];
+                if (!datosEstudiante.desafiosCompletados) datosEstudiante.desafiosCompletados = {};
+                if (!datosEstudiante.logros) datosEstudiante.logros = [];
+                if (!datosEstudiante.ensayosSimce) datosEstudiante.ensayosSimce = [];
+
+                // Persistir en LocalStorage
+                localStorage.setItem('estudiante_multiaventura', JSON.stringify(datosEstudiante));
+
+                // Efecto de carga y redirección
+                redirigirASistema();
+            });
+
+            function mostrarAlerta(mensaje) {
+                cajaAlerta.textContent = mensaje;
+                cajaAlerta.style.display = 'block';
+                cajaAlerta.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            function redirigirASistema() {
+                const btnIngresar = document.getElementById('btnIngresar');
+                btnIngresar.disabled = true;
+                btnIngresar.innerHTML = `<span>Cargando tu aventura...</span> ⏳`;
+                
+                // Transición fluida a Sistema/index.html
+                setTimeout(() => {
+                    window.location.href = 'Sistema/index.html';
+                }, 400);
+            }
+        });
+    </script>
+</body>
+</html>

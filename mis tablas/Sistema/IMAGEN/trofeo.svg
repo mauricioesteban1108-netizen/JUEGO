@@ -1,0 +1,13 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" fill="#FFFDF7" stroke="#D4AF37" stroke-width="6"/>
+    <!-- Copa del Trofeo -->
+    <path d="M60 45H140V90C140 115 120 135 100 135C80 135 60 115 60 90V45Z" fill="#F1C40F" stroke="#0B1B3D" stroke-width="5"/>
+    <!-- Asas de la Copa -->
+    <path d="M60 55C40 55 35 75 42 90C48 102 60 105 60 105" stroke="#0B1B3D" stroke-width="5" fill="none"/>
+    <path d="M140 55C160 55 165 75 158 90C152 102 140 105 140 105" stroke="#0B1B3D" stroke-width="5" fill="none"/>
+    <!-- Base -->
+    <path d="M92 135H108V155H92V135Z" fill="#D4AF37" stroke="#0B1B3D" stroke-width="4"/>
+    <rect x="70" y="155" width="60" height="20" rx="6" fill="#0B1B3D"/>
+    <!-- Estrella Central -->
+    <polygon points="100,70 104,80 115,81 106,88 109,100 100,93 91,100 94,88 85,81 96,80" fill="#FFFFFF"/>
+</svg>
