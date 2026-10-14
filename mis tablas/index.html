@@ -605,6 +605,51 @@
 
             let avatarSeleccionadoId = null;
             let avatarSeleccionadoNombre = '';
+            let contextoAudio = null;
+
+            function reproducirClic() {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContextClass) return;
+                contextoAudio = contextoAudio || new AudioContextClass();
+                if (contextoAudio.state === 'suspended') contextoAudio.resume();
+                const oscilador = contextoAudio.createOscillator();
+                const volumen = contextoAudio.createGain();
+                oscilador.frequency.value = 520;
+                volumen.gain.setValueAtTime(0.12, contextoAudio.currentTime);
+                volumen.gain.exponentialRampToValueAtTime(0.0001, contextoAudio.currentTime + 0.06);
+                oscilador.connect(volumen);
+                volumen.connect(contextoAudio.destination);
+                oscilador.start();
+                oscilador.stop(contextoAudio.currentTime + 0.06);
+            }
+
+            function reproducirVoz(texto) {
+                if (!('speechSynthesis' in window) || !texto) return;
+                const voces = window.speechSynthesis.getVoices();
+                const vocesEspanol = voces.filter(voz => /^es([_-]|$)/i.test(voz.lang));
+                const vozFemenina = vocesEspanol.find(voz =>
+                    /(female|mujer|sabina|helena|laura|paulina|monica|lucia|elena|sofia|ximena|valentina|isabela)/i.test(voz.name)
+                );
+                const lectura = new SpeechSynthesisUtterance(texto);
+                lectura.lang = vozFemenina?.lang || vocesEspanol[0]?.lang || 'es-ES';
+                lectura.voice = vozFemenina || vocesEspanol[0] || null;
+                lectura.pitch = 1.15;
+                lectura.rate = 0.95;
+                window.speechSynthesis.cancel();
+                window.speechSynthesis.speak(lectura);
+            }
+
+            document.addEventListener('click', event => {
+                if (event.target.closest('button, input, label, [role="radio"]')) reproducirClic();
+            }, true);
+
+            document.addEventListener('pointerover', event => {
+                const elemento = event.target.closest('#inputNombre, .tarjeta-avatar, #btnIngresar, #btnContinuarPrevio');
+                if (!elemento || elemento.contains(event.relatedTarget)) return;
+                const texto = elemento.labels?.[0]?.textContent || elemento.getAttribute('aria-label') ||
+                    elemento.getAttribute('data-nombre') || elemento.innerText || elemento.placeholder;
+                if (texto) reproducirVoz(texto.replace(/\\s+/g, ' ').trim());
+            });
 
             // Verificar si ya existe un perfil en localStorage
             const perfilGuardado = localStorage.getItem('estudiante_multiaventura');

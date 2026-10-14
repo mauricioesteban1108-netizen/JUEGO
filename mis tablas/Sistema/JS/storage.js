@@ -201,6 +201,7 @@ const ModuloStorage = (() => {
             const metaLogro = LOGROS_SISTEMA.find(l => l.id === idLogro);
             if (metaLogro) {
                 estudiante.puntos += metaLogro.puntosRecompensa;
+                estudiante.nivel = calcularNivel(estudiante.puntos);
             }
 
             guardarEstudiante(estudiante);
@@ -223,8 +224,7 @@ const ModuloStorage = (() => {
         const estudiante = obtenerEstudiante();
         if (!estudiante) return false;
 
-        // Condición: tener al menos 120 puntos O 2 tablas practicadas O habilitado forzosamente
-        if (estudiante.simceForzadoHabilitado) return true;
+        // Condición: tener al menos 120 puntos O completar 2 talleres de tablas.
         const tablasPracticadas = estudiante.tablasDominadas.length;
         return (estudiante.puntos >= 120 || tablasPracticadas >= 2);
     }
@@ -254,6 +254,7 @@ const ModuloStorage = (() => {
         const puntosGanados = puntaje * 25;
         estudiante.puntos += puntosGanados;
         estudiante.estrellas += (puntaje >= 8 ? 5 : puntaje >= 5 ? 3 : 1);
+        estudiante.nivel = calcularNivel(estudiante.puntos);
 
         guardarEstudiante(estudiante);
 

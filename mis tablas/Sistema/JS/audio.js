@@ -8,6 +8,7 @@
 const ModuloAudio = (() => {
     let audioCtx = null;
     let sonidoHabilitado = true;
+    let ultimoClic = 0;
 
     // Cargar preferencia del usuario
     const prefGuardada = localStorage.getItem('multiaventura_sonido');
@@ -70,7 +71,28 @@ const ModuloAudio = (() => {
 
     // Efecto 1: Clic Suave en botones
     function reproducirClic() {
+        if (!sonidoHabilitado) return;
+        const ahora = Date.now();
+        if (ahora - ultimoClic < 40) return;
+        ultimoClic = ahora;
         reproducirTono(520, 'sine', 0.06, 0, 0.12);
+    }
+
+    function reproducirVoz(texto) {
+        if (!sonidoHabilitado || !('speechSynthesis' in window) || !texto) return;
+
+        const voces = window.speechSynthesis.getVoices();
+        const vozEspanol = voces.filter(voz => /^es([_-]|$)/i.test(voz.lang));
+        const vozFemenina = vozEspanol.find(voz =>
+            /(female|mujer|sabina|helena|laura|paulina|monica|lucia|elena|sofia|ximena|valentina|isabela)/i.test(voz.name)
+        );
+        const utterance = new SpeechSynthesisUtterance(texto);
+        utterance.lang = vozFemenina?.lang || vozEspanol[0]?.lang || 'es-ES';
+        utterance.voice = vozFemenina || vozEspanol[0] || null;
+        utterance.pitch = 1.15;
+        utterance.rate = 0.95;
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
     }
 
     // Efecto 2: Respuesta Correcta (Acorde Mayor Ascendente Do-Mi-Sol)
@@ -112,6 +134,7 @@ const ModuloAudio = (() => {
         alternarSonido,
         estaHabilitado,
         reproducirClic,
+        reproducirVoz,
         reproducirAcierto,
         reproducirError,
         reproducirVictoria,

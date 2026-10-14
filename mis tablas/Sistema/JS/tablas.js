@@ -11,6 +11,16 @@ const ModuloTablas = (() => {
     let preguntaTallerActual = 0;
     let aciertosTaller = 0;
     let preguntasTaller = [];
+    const factoresPendientesPorTabla = new Map();
+    let estructuraTallerInicial = '';
+
+    function mezclar(array) {
+        for (let indice = array.length - 1; indice > 0; indice--) {
+            const destino = Math.floor(Math.random() * (indice + 1));
+            [array[indice], array[destino]] = [array[destino], array[indice]];
+        }
+        return array;
+    }
 
     // Colección de Trucos y Patrones Pedagógicos para 4° Básico
     const TRUCOS_TABLAS = {
@@ -65,6 +75,14 @@ const ModuloTablas = (() => {
     const ICONOS_OBJETOS = ['🍎', '⭐', '🎈', '⚽', '🚗', '📚', '🍪', '💎', '🚀', '🐱'];
 
     function inicializar() {
+        const contenedorTaller = document.getElementById('tallerPreguntaContenedor');
+        if (contenedorTaller && !estructuraTallerInicial) {
+            estructuraTallerInicial = contenedorTaller.innerHTML;
+        }
+        if (contenedorTaller && estructuraTallerInicial && !document.getElementById('textoPreguntaTaller')) {
+            contenedorTaller.innerHTML = estructuraTallerInicial;
+        }
+
         renderizarSelectorTablas();
         cargarTabla(2);
     }
@@ -200,9 +218,15 @@ const ModuloTablas = (() => {
         preguntaTallerActual = 0;
         aciertosTaller = 0;
 
-        // Generar 5 preguntas aleatorias de la tabla actual
-        const factoresPosibles = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].sort(() => 0.5 - Math.random());
-        preguntasTaller = factoresPosibles.slice(0, 5).map(f => {
+        // Cada tabla consume sus 10 factores en rondas de 5 sin repetirlos.
+        let factoresPendientes = factoresPendientesPorTabla.get(tablaActual);
+        if (!factoresPendientes || factoresPendientes.length < 5) {
+            factoresPendientes = mezclar([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]);
+        }
+        const factoresPregunta = factoresPendientes.splice(0, 5);
+        factoresPendientesPorTabla.set(tablaActual, factoresPendientes);
+
+        preguntasTaller = factoresPregunta.map(f => {
             const correcta = tablaActual * f;
             // Generar 3 distractores plausibles
             const distractores = new Set();
@@ -213,7 +237,7 @@ const ModuloTablas = (() => {
                     distractores.add(distractor);
                 }
             }
-            const opciones = [correcta, ...Array.from(distractores)].sort(() => 0.5 - Math.random());
+            const opciones = mezclar([correcta, ...Array.from(distractores)]);
             return {
                 factor: f,
                 correcta: correcta,
@@ -329,6 +353,7 @@ const ModuloTablas = (() => {
 
         document.getElementById('btnReintentarTaller').addEventListener('click', () => {
             ModuloAudio.reproducirClic();
+            contenedor.innerHTML = estructuraTallerInicial;
             iniciarTallerPractica();
         });
 

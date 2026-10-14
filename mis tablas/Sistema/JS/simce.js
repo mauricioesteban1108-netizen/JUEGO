@@ -276,8 +276,9 @@ const ModuloSimce = (() => {
                     if (!respuestasEstudiante[i]) faltantes.push(i + 1);
                 }
 
-                const confirmar = confirm(`⚠️ Te faltan ${total - respondidas} preguntas por responder (Preguntas: ${faltantes.join(', ')}).\n\n¿Deseas finalizar y evaluar el ensayo de todas formas?`);
-                if (!confirmar) return;
+                alert(`Aún faltan ${total - respondidas} preguntas por responder (preguntas: ${faltantes.join(', ')}). Completa todas para evaluar el ensayo.`);
+                cargarPregunta(faltantes[0] - 1);
+                return;
             }
 
             evaluarEnsayo();

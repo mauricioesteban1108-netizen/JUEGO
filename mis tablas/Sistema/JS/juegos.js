@@ -743,12 +743,12 @@ const ModuloJuegos = (() => {
 
                     <div class="ecuacion-incompleta">
                         <span>${item.textoAntes}</span>
-                        <div class="casilla-destino" id="casillaDestino">?</div>
+                        <div class="casilla-destino" id="casillaDestino" aria-label="Suelta aquí el número que falta">?</div>
                         <span>${item.textoDespues}</span>
                     </div>
 
                     <div style="font-weight: 800; font-size: 0.95rem; color: var(--color-azul-oscuro); margin-bottom: 12px;">
-                        Fichas disponibles (haz clic en una):
+                        Fichas disponibles (arrástralas a la casilla o haz clic):
                     </div>
                     <div class="fichas-disponibles" id="fichasDisponibles"></div>
 
@@ -757,48 +757,93 @@ const ModuloJuegos = (() => {
             `;
 
             const contenedorFichas = document.getElementById('fichasDisponibles');
+            const casilla = document.getElementById('casillaDestino');
+            let respondido = false;
+
+            function responder(op, ficha) {
+                if (respondido) return;
+                respondido = true;
+
+                const retro = document.getElementById('retroArrastra');
+                retro.style.display = 'block';
+                casilla.textContent = op;
+                document.querySelectorAll('.ficha-numero').forEach(elemento => elemento.draggable = false);
+
+                if (op === item.faltante) {
+                    casilla.style.borderColor = 'var(--color-verde-exito)';
+                    casilla.style.color = 'var(--color-verde-exito)';
+                    ficha.style.background = 'var(--color-verde-exito)';
+                    ModuloAudio.reproducirAcierto();
+                    retro.style.backgroundColor = 'var(--color-verde-suave)';
+                    retro.style.color = 'var(--color-verde-exito)';
+                    retro.innerHTML = `🎉 ¡Perfecto! La igualdad queda completa y correcta.`;
+                    ModuloStorage.sumarPuntos(20, 1);
+
+                    setTimeout(() => {
+                        indexDesafio++;
+                        cargarDesafio();
+                    }, 1600);
+                } else {
+                    casilla.style.borderColor = 'var(--color-rojo-alerta)';
+                    casilla.style.color = 'var(--color-rojo-alerta)';
+                    ficha.style.background = 'var(--color-rojo-alerta)';
+                    ModuloAudio.reproducirError();
+                    retro.style.backgroundColor = 'var(--color-rojo-suave)';
+                    retro.style.color = 'var(--color-rojo-alerta)';
+                    retro.innerHTML = `💡 Con ${op} la operación no calza. El número correcto era ${item.faltante}.`;
+
+                    setTimeout(() => {
+                        indexDesafio++;
+                        cargarDesafio();
+                    }, 2000);
+                }
+            }
+
+            casilla.addEventListener('dragover', event => {
+                event.preventDefault();
+                event.dataTransfer.dropEffect = 'move';
+            });
+
+            casilla.addEventListener('dragenter', event => {
+                event.preventDefault();
+                casilla.classList.add('recibiendo-ficha');
+            });
+
+            casilla.addEventListener('dragleave', event => {
+                if (!casilla.contains(event.relatedTarget)) {
+                    casilla.classList.remove('recibiendo-ficha');
+                }
+            });
+
+            casilla.addEventListener('drop', event => {
+                event.preventDefault();
+                casilla.classList.remove('recibiendo-ficha');
+                const numero = Number(event.dataTransfer.getData('text/plain'));
+                const ficha = Array.from(contenedorFichas.children).find(elemento => Number(elemento.textContent) === numero);
+                if (ficha) responder(numero, ficha);
+            });
+
             item.opciones.forEach(op => {
                 const ficha = document.createElement('div');
                 ficha.className = 'ficha-numero';
                 ficha.textContent = op;
+                ficha.draggable = true;
+                ficha.setAttribute('role', 'button');
+                ficha.setAttribute('aria-label', `Arrastrar el número ${op}`);
+
+                ficha.addEventListener('dragstart', event => {
+                    event.dataTransfer.setData('text/plain', String(op));
+                    event.dataTransfer.effectAllowed = 'move';
+                    ficha.classList.add('arrastrando');
+                });
+
+                ficha.addEventListener('dragend', () => {
+                    ficha.classList.remove('arrastrando');
+                });
 
                 ficha.onclick = () => {
-                    const retro = document.getElementById('retroArrastra');
-                    retro.style.display = 'block';
-
-                    const casilla = document.getElementById('casillaDestino');
-                    casilla.textContent = op;
-
-                    document.querySelectorAll('.ficha-numero').forEach(f => f.style.pointerEvents = 'none');
-
-                    if (op === item.faltante) {
-                        casilla.style.borderColor = 'var(--color-verde-exito)';
-                        casilla.style.color = 'var(--color-verde-exito)';
-                        ficha.style.background = 'var(--color-verde-exito)';
-                        ModuloAudio.reproducirAcierto();
-                        retro.style.backgroundColor = 'var(--color-verde-suave)';
-                        retro.style.color = 'var(--color-verde-exito)';
-                        retro.innerHTML = `🎉 ¡Perfecto! La igualdad queda completa y correcta.`;
-                        ModuloStorage.sumarPuntos(20, 1);
-
-                        setTimeout(() => {
-                            indexDesafio++;
-                            cargarDesafio();
-                        }, 1600);
-                    } else {
-                        casilla.style.borderColor = 'var(--color-rojo-alerta)';
-                        casilla.style.color = 'var(--color-rojo-alerta)';
-                        ficha.style.background = 'var(--color-rojo-alerta)';
-                        ModuloAudio.reproducirError();
-                        retro.style.backgroundColor = 'var(--color-rojo-suave)';
-                        retro.style.color = 'var(--color-rojo-alerta)';
-                        retro.innerHTML = `💡 Con ${op} la operación no calza. El número correcto era ${item.faltante}.`;
-
-                        setTimeout(() => {
-                            indexDesafio++;
-                            cargarDesafio();
-                        }, 2000);
-                    }
+                    ModuloAudio.reproducirClic();
+                    responder(op, ficha);
                 };
 
                 contenedorFichas.appendChild(ficha);

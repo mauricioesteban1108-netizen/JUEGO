@@ -124,3 +124,8 @@ c:\xampp\htdocs\codigos\mis tablas\
 ## 🔊 Sonido y Persistencia
 - **Audio Nativo Web Audio API**: Sin descargas externas de audio (funciona 100% offline).
 - **LocalStorage**: Todo el avance, puntos, estrellas, ensayos y logros quedan guardados permanentemente en el navegador.
+
+## Acceso al Ensayo y Uso Móvil
+- El ensayo SIMCE se habilita al completar los talleres de al menos 2 tablas o al acumular 120 puntos en las actividades. No existe un acceso que permita saltarse este requisito.
+- Para evaluar el ensayo se deben responder las 10 preguntas. Al finalizar se muestra el puntaje y la retroalimentación de cada respuesta.
+- La interfaz es adaptable a pantallas pequeñas y puede utilizarse desde un navegador móvil. El empaquetado como aplicación móvil nativa queda como una etapa posterior.

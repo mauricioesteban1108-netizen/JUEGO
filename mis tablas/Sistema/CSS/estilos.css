@@ -260,6 +260,53 @@ h1, h2, h3, h4, .fuente-titulo {
     transform: translateY(-2px);
 }
 
+@media (max-width: 600px) {
+    .barra-contenedor {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 12px 14px;
+        gap: 10px;
+    }
+
+    .marca-logo {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .perfil-estudiante-header {
+        width: 100%;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 8px;
+    }
+
+    .chip-avatar {
+        grid-column: 1 / -1;
+        justify-self: center;
+        max-width: 100%;
+    }
+
+    .stats-header {
+        justify-self: end;
+        gap: 5px;
+    }
+
+    .chip-stat {
+        padding: 6px 8px;
+        font-size: 0.8rem;
+    }
+
+    .acciones-header {
+        justify-self: start;
+        gap: 6px;
+    }
+
+    .btn-cambiar-estudiante {
+        padding: 7px 9px;
+    }
+
+}
+
 /* ==========================================================================
    Contenedor Principal y Vistas (SPA)
    ========================================================================== */
@@ -705,6 +752,7 @@ h1, h2, h3, h4, .fuente-titulo {
     border-radius: 5px;
     background: var(--color-crema-oscuro);
     outline: none;
+    appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
 }
@@ -1204,7 +1252,7 @@ h1, h2, h3, h4, .fuente-titulo {
     animation: sacudir 0.5s infinite;
 }
 
-/* JUEGO 6: Arrastra y Completa (Tap & Slot) */
+/* JUEGO 6: Arrastra y Completa */
 .zona-arrastra {
     max-width: 640px;
     margin: 0 auto;
@@ -1234,6 +1282,13 @@ h1, h2, h3, h4, .fuente-titulo {
     font-size: 2.2rem;
     color: var(--color-azul-oscuro);
     box-shadow: inset 0 2px 6px rgba(0,0,0,0.06);
+    transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+
+.casilla-destino.recibiendo-ficha {
+    background: var(--color-azul-suave);
+    border-color: var(--color-dorado-acento);
+    transform: scale(1.06);
 }
 
 .fichas-disponibles {
@@ -1261,6 +1316,12 @@ h1, h2, h3, h4, .fuente-titulo {
     transition: var(--transicion-rapida);
     box-shadow: var(--sombra-suave);
     user-select: none;
+    cursor: grab;
+}
+
+.ficha-numero.arrastrando {
+    cursor: grabbing;
+    opacity: 0.55;
 }
 
 .ficha-numero:hover {
@@ -1768,4 +1829,39 @@ h1, h2, h3, h4, .fuente-titulo {
 
 .pie-sistema strong {
     color: var(--color-azul-oscuro);
+}
+
+@media (max-width: 600px) {
+    .contenedor-app {
+        padding: 20px 14px 48px;
+    }
+
+    .banner-bienvenida {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 22px 18px;
+    }
+
+    .progreso-global-widget {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .progreso-global-info {
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .grilla-menu-principal {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .contenedor-ensayo-simce {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .panel-lateral-simce,
+    .area-principal-pregunta {
+        min-width: 0;
+    }
 }

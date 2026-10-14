@@ -108,6 +108,24 @@ const App = (() => {
 
     // Configuración de listeners globales
     function configurarEventosGlobales() {
+        document.addEventListener('click', event => {
+            if (event.target.closest('button, a, input, select, textarea, label, [role="button"], [role="radio"], .tarjeta-menu, .tarjeta-juego-item')) {
+                ModuloAudio.reproducirClic();
+            }
+        }, true);
+
+        document.addEventListener('pointerover', event => {
+            const elemento = event.target.closest('button, a, input, select, textarea, [role="button"], [role="radio"], .tarjeta-menu, .tarjeta-juego-item, .btn-pildora-tabla');
+            if (!elemento || elemento.contains(event.relatedTarget)) return;
+
+            const etiqueta = elemento.getAttribute('aria-label') || elemento.title ||
+                elemento.querySelector('h3')?.textContent ||
+                elemento.labels?.[0]?.textContent ||
+                elemento.placeholder || elemento.innerText || elemento.textContent;
+            const texto = etiqueta?.replace(/\\s+/g, ' ').trim();
+            if (texto) ModuloAudio.reproducirVoz(texto.slice(0, 140));
+        });
+
         // Clic en logo -> ir al menú principal
         const logo = document.getElementById('logoHeader');
         if (logo) {
@@ -297,14 +315,11 @@ const App = (() => {
                 Ensayo SIMCE en Preparación
             </h3>
             <p style="font-size: 1rem; color: var(--color-texto-secundario); font-weight: 600; line-height: 1.5; margin-bottom: 20px;">
-                Para asegurar un excelente resultado en el SIMCE oficial, se recomienda primero practicar al menos <strong>2 tablas de multiplicar</strong> o acumular <strong>120 puntos</strong> en los juegos.
+                Para habilitar el ensayo, completa los talleres de al menos <strong>2 tablas de multiplicar</strong> o acumula <strong>120 puntos</strong> en las actividades.
             </p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
                 <button id="btnIrAprenderDesdeModal" class="btn-volver" style="background: var(--color-azul-oscuro); color: var(--color-crema);">
                     📘 Ir a Aprender Tablas
-                </button>
-                <button id="btnDesbloquearForzado" class="btn-volver" style="border-color: var(--color-dorado-acento); font-size: 0.88rem;">
-                    🔓 Ingresar en Modo Entrenamiento
                 </button>
             </div>
         `;
@@ -314,18 +329,6 @@ const App = (() => {
         document.getElementById('btnIrAprenderDesdeModal').onclick = () => {
             modal.classList.remove('abierto');
             navegarA('tablas');
-        };
-
-        // Opción pedagógica para docentes o alumnos que quieran ensayar de inmediato
-        document.getElementById('btnDesbloquearForzado').onclick = () => {
-            const estudiante = ModuloStorage.obtenerEstudiante();
-            if (estudiante) {
-                estudiante.simceForzadoHabilitado = true;
-                ModuloStorage.guardarEstudiante(estudiante);
-            }
-            modal.classList.remove('abierto');
-            ModuloSimce.inicializar();
-            actualizarDashboard();
         };
     }
 
